@@ -1,208 +1,195 @@
-# 💕 Wedding Invitation Website
+# 💕 Lakmi & Sukitha's Wedding Website
 
-A beautiful, romantic, and fully functional wedding invitation website that you can share via WhatsApp with all your guests. Built with HTML, CSS, and JavaScript - completely free to host!
+A beautiful, romantic, and fully functional wedding invitation website. Built with HTML, CSS, and JavaScript - completely free to customize and host!
 
-## Features
+## ✨ Features
 
-✨ **Beautiful Design**
-- Responsive and mobile-friendly
-- Romantic, elegant styling
-- Smooth animations and transitions
+✅ **Responsive Design**
+- Works perfectly on desktop, tablet, and mobile
+- Smooth parallax scrolling effects
+- Elegant animations and transitions
 
 🎯 **Guest Management**
-- Guest name dropdown selector
-- Plus-one support (up to 4 additional guests)
-- Custom name option if guest not in list
+- Guest name dropdown selector (dynamically populated)
+- Easy RSVP confirmation
+- Email collection for updates
 
 📝 **RSVP Form**
+- Guest name selection from invited list
 - Attendance confirmation (Yes/No)
-- Dietary preferences (Veg, Vegan, Gluten-free, Halal, Kosher, Other)
-- Special requests field
-- Email for confirmation
+- Email address collection
+- Automatic timestamp recording
+- Real-time form validation
 
-📍 **Wedding Details**
-- Couple photo display
-- Wedding story section
-- Date, time, and venue information
-- Dress code guidance
-- Event details
+📊 **Google Sheets Integration**
+- Responses automatically saved to Google Sheet
+- Track attendance in real-time
+- Export data for analysis
 
-💾 **Data Management**
-- Local storage backup (all RSVPs saved automatically)
-- Optional: Formspree integration for email notifications
-- CSV export functionality for RSVP management
+📱 **Mobile First**
+- Optimized for all devices
+- Touch-friendly interface
+- Fast loading times
 
-## Quick Start
+## 🚀 Quick Start
 
-### 1. Customize Your Content
+### 1. Clone & Setup
+```bash
+# Already installed in:
+cd /Users/lakalgamage/repos/wedding_invites
+python3 -m http.server 8001
+```
+Visit: **http://localhost:8001**
 
-Edit `config.json` with your details:
-
+### 2. Edit Configuration
+Open `config.json` and update:
 ```json
 {
   "couple": {
-    "bride": "Your Bride Name",
-    "groom": "Your Groom Name",
-    "photoUrl": "couple-photo.jpg"
+    "bride": "Lakmi",
+    "groom": "Sukitha"
   },
-  "story": "Your love story here...",
-  "weddingDate": "Saturday, May 15, 2026",
-  "weddingTime": "Evening: 6:00 PM onwards",
-  "venue": {
-    "name": "Venue Name",
-    "address": "Full Address"
-  },
-  "events": "Evening Reception & Dinner",
-  "dressCode": "Semi-Formal / Indian Festive Attire",
-  "formspreeId": ""
-}
-```
-
-### 2. Add Your Couple Photo
-
-1. Place your couple photo in the project folder
-2. Name it `couple-photo.jpg` (or update the filename in config.json)
-3. Ensure it's high quality for best display
-
-### 3. Build Your Guest List
-
-Edit `guests.json` and add all guest names:
-
-```json
-{
+  "weddingDate": "Thursday, May 28, 2026",
+  "weddingTime": "9:00 AM to 4:00 PM",
+  "poruwaTime": "10:00 AM",
+  "venue": { "name": "Saminro Grand Palace", "address": "Makola" },
   "guests": [
-    "Guest Name 1",
-    "Guest Name 2",
-    "Guest Name 3"
-  ]
+    { "name": "Guest Name 1" },
+    { "name": "Guest Name 2" }
+  ],
+  "googleSheetsUrl": "https://script.google.com/macros/d/YOUR_SCRIPT_ID/userweb"
 }
 ```
 
-## Deployment Options (All FREE!)
+### 3. Add Your Photos
 
-### Option 1: Netlify (EASIEST - Recommended)
+Replace these files with your own:
+- `couple-photo.jpg` - Hero couple image (portrait orientation recommended)
+- `photo1.jpg` - Gallery image
+- `photo2.jpg` - Parallax background
+- `photo4.jpg` - Registry section image
 
-1. Go to [netlify.com](https://netlify.com)
-2. Sign up with GitHub or email
-3. Drag and drop your project folder
-4. Your site is live! Get the link
-5. Share via WhatsApp
+### 4. Setup Google Sheets
 
-**Result:** Each guest gets a unique link like `https://your-wedding.netlify.app`
+Follow the detailed guide: **[GOOGLE_SHEETS_INTEGRATION.md](GOOGLE_SHEETS_INTEGRATION.md)**
 
-### Option 2: Vercel
+## 🔗 Website Sections
 
-1. Go to [vercel.com](https://vercel.com)
-2. Click "New Project"
-3. Import your GitHub repo or upload folder
-4. Your site is live!
+**Navigation** → OUR STORY | DETAILS | PROMISES
 
-### Option 3: GitHub Pages (Requires GitHub)
+**Hero** - Couple names, tagline, call-to-action
 
-1. Create a [GitHub account](https://github.com)
-2. Create a new repo named `your-username.github.io`
-3. Upload your files
-4. Access at `https://your-username.github.io`
+**Timeline** - Sacred Poruwa Ceremony with 10:00 AM highlight
 
-### Option 4: Firebase Hosting
+**Story** - "A Journey of Love & Tradition" narrative
 
-1. Go to [firebase.google.com](https://firebase.google.com)
-2. Create a new project
-3. Install Firebase CLI: `npm install -g firebase-tools`
-4. Run: `firebase deploy`
+**Gallery** - Three wedding photos
 
-## Setting Up Email Notifications (Optional)
+**Quote** - Inspirational message
 
-By default, RSVPs are saved in the browser's localStorage. To get email notifications:
+**Travel & Stay** - 3 items: Getting There, Things to Do, Where to Stay
 
-### Setup Formspree (FREE - 50 submissions/month)
+**RSVP Form** ⭐ - Main feature with Google Sheets integration
 
-1. Go to [formspree.io](https://formspree.io)
+**Footer** - Contact information
+
+## 📱 Mobile & Desktop
+
+- **Desktop**: Side-by-side layout with large images
+- **Tablet**: Adapted spacing and sizing
+- **Mobile**: Responsive single-column, full-width images
+
+Test mobile view: Press F12 in browser, click device icon
+
+See [MOBILE_TESTING.md](MOBILE_TESTING.md) for complete checklist
+
+## 🚀 Deployment
+
+### GitHub Pages (Recommended)
+```bash
+git add .
+git commit -m "Update wedding website"
+git push origin main
+```
+Live at: **https://lakal96.github.io/wedding-invites**
+
+### Netlify (Easiest)
+1. Go to netlify.com
 2. Sign up
-3. Click "New Form"
-4. Enter your email address
-5. Get your Form ID (looks like: `abc12def`)
-6. Add it to `config.json`:
+3. Drag & drop your folder
+4. Get instant live URL
 
-```json
-{
-  "formspreeId": "your_form_id_here"
-}
-```
+### Vercel
+Go to vercel.com, import your GitHub repo
 
-Now you'll receive an email for each RSVP submission!
+## 📊 Google Sheets Data Sync
 
-## Managing RSVPs
+Your form automatically sends data to Google Sheets:
 
-### Method 1: Email Notifications (if using Formspree)
-- RSVPs arrive in your email inbox
-- Check details, notes, dietary preferences
+**Data Tracked:**
+- Guest Name
+- Attendance (Yes/No)
+- Email
+- Timestamp
 
-### Method 2: Browser Storage
-- Open the website in your browser
-- Press `F12` to open Developer Tools
-- Go to "Application" > "Local Storage"
-- View all saved RSVPs
-- Share with co-organizer by copying data
+**To Setup:**
+1. Create Google Sheet
+2. Deploy Google Apps Script
+3. Paste URL into `config.json`
+4. Test form submission
+5. See responses appear in Table
 
-### Method 3: CSV Export
-- From browser console, run: `exportRsvpsToCSV()`
-- Download CSV file with all RSVPs
-- Open in Excel for easy management
+[Full Setup Guide →](GOOGLE_SHEETS_INTEGRATION.md)
 
-## Customization Tips
+## ✅ Preparation Checklist
 
-### Change Colors
-Edit `css/styles.css`:
-```css
-:root {
-    --primary-color: #d4a574;      /* Gold tone - change this */
-    --secondary-color: #2c3e50;    /* Dark blue - change this */
-    --accent-color: #e74c3c;       /* Red - change this */
-}
-```
+- [ ] Updated `config.json` with couple info
+- [ ] Added guest list to `config.json`
+- [ ] Replaced all 4 photos with your images
+- [ ] Setup Google Sheets integration (optional but recommended)
+- [ ] Tested form submission
+- [ ] Tested on mobile device
+- [ ] Pushed to GitHub / Deployed to hosting
+- [ ] Shared URL with guests
 
-### Add More Events
-In `config.json`, update:
-```json
-"events": "Pre-Wedding Mehendi - 5:00 PM\nWedding Ceremony - 6:00 PM\nReception - 8:00 PM"
-```
+## 🛠️ Technology
 
-### Multiple Photos
-Create additional sections in `index.html` and update CSS as needed
+- **HTML5** - Content structure
+- **CSS3** - Responsive design, animations
+- **JavaScript** - Form handling, interactions, scroll effects
+- **Google Sheets** - RSVP data storage
 
-## WhatsApp Sharing Instructions
+No frameworks, no backend server needed - completely static!
 
-1. Get your live website URL (from Netlify/Vercel)
-2. Test it works on mobile
-3. Share in WhatsApp:
+## 📞 Support
 
-```
-Hi everyone! 💕
+- **Mobile Issues?** → See [MOBILE_TESTING.md](MOBILE_TESTING.md)
+- **Google Sheets?** → See [GOOGLE_SHEETS_INTEGRATION.md](GOOGLE_SHEETS_INTEGRATION.md)
+- **Customization?** → Edit `index.html`, `config.json`, or `css/styles.css`
 
-You're invited to our wedding! 
+## 📝 File Guide
 
-Please RSVP here: [YOUR_LINK_HERE]
+| File | Purpose |
+|------|---------|
+| `index.html` | Main website content |
+| `config.json` | Your settings (EDIT HERE) |
+| `css/styles.css` | All styling & responsive design |
+| `js/script.js` | Form handling & animations |
+| `couple-photo.jpg` | Hero image (portrait) |
+| `photo1.jpg`, `photo2.jpg`, `photo4.jpg` | Gallery images |
 
-We can't wait to celebrate with you! 🎉
-```
+## 🎉 Ready to Share!
 
-Each guest clicks the link and fills their RSVP directly.
+Your website is ready to customize and share:
 
-## File Structure
+1. **Customize**: Update `config.json` and add photos
+2. **Test**: View locally and on mobile
+3. **Deploy**: Push to GitHub / Netlify
+4. **Share**: Send URL to your guests via email/WhatsApp
 
-```
-wedding_invites/
-├── index.html          # Main page
-├── config.json         # Your wedding details (EDIT THIS!)
-├── guests.json         # Guest list (EDIT THIS!)
-├── couple-photo.jpg    # Your couple photo (ADD THIS!)
-├── css/
-│   └── styles.css      # Styling
-├── js/
-│   └── script.js       # Functionality
-└── README.md           # This file
-```
+**Website URL**: https://lakal96.github.io/wedding-invites
+
+**Good luck with your wedding! 💍✨**
 
 ## Troubleshooting
 

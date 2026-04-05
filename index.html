@@ -2,178 +2,175 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Our Wedding Celebration</title>
     <link rel="stylesheet" href="css/styles.css">
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Lato:wght@300;400;700&family=Dancing+Script:wght@400;700&display=swap" rel="stylesheet">
+    <script src="https://kit.fontawesome.com/7b12bcc245.js" crossorigin="anonymous"></script>
+    <title>Lakmi & Sukitha's Wedding</title>
 </head>
 <body>
-    <!-- Navigation -->
-    <nav class="navbar">
-        <div class="nav-container">
-            <div class="nav-logo">💕 Our Wedding</div>
-            <ul class="nav-menu">
-                <li class="nav-item"><a href="#couple" class="nav-link">Our Story</a></li>
-                <li class="nav-item"><a href="#venue" class="nav-link">Venue</a></li>
-                <li class="nav-item"><a href="#rsvp" class="nav-link">RSVP</a></li>
-            </ul>
-        </div>
+
+
+    <nav>
+        <input type="checkbox" id="check">
+        <label for="check" class="checkbtn">
+            <i class="fas fa-bars"></i>
+        </label>
+        <label class="logo">L&S</label>
+        <ul class="text">
+            <li><a href="#story" onclick="myFunction()">OUR STORY</a></li>
+            <li><a href="#stay" onclick="myFunction()">DETAILS</a></li>
+            <li><a href="#registry" onclick="myFunction()">PROMISES</a></li>
+        </ul>
     </nav>
 
-    <!-- Hero Section with Couple Photo -->
-    <section class="hero">
-        <div class="hero-content">
-            <h1 class="hero-title">We're Getting Married!</h1>
-            <p class="hero-subtitle" id="coupleNames">Loading...</p>
-        </div>
-        <div class="couple-photo-container">
-            <img id="couplePhoto" src="placeholder.jpg" alt="Couple Photo" class="couple-photo">
-        </div>
-    </section>
 
-    <!-- Our Story Section -->
-    <section id="couple" class="story-section">
-        <div class="container">
-            <h2 class="section-title">Our Love Story</h2>
-            <div class="story-content">
-                <p id="storyText" class="story-text">Loading story...</p>
-                <div class="heart-divider">💕</div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Wedding Details Section -->
-    <section id="venue" class="details-section">
-        <div class="container">
-            <h2 class="section-title">Wedding Details</h2>
-            <div class="details-grid">
-                <div class="detail-card">
-                    <div class="detail-icon">📅</div>
-                    <h3>Date & Time</h3>
-                    <p id="weddingDate">Loading...</p>
-                    <p id="weddingTime" class="time-detail">Loading...</p>
-                </div>
-                <div class="detail-card">
-                    <div class="detail-icon">📍</div>
-                    <h3>Venue</h3>
-                    <p id="venueName" class="venue-name">Loading...</p>
-                    <p id="venueAddress" class="venue-address">Loading...</p>
-                </div>
-                <div class="detail-card">
-                    <div class="detail-icon">🎭</div>
-                    <h3>Events</h3>
-                    <p id="eventDetails">Loading...</p>
-                </div>
-                <div class="detail-card">
-                    <div class="detail-icon">👗</div>
-                    <h3>Dress Code</h3>
-                    <p id="dressCode">Loading...</p>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- RSVP Section -->
-    <section id="rsvp" class="rsvp-section">
-        <div class="container">
-            <h2 class="section-title">RSVP</h2>
-            <p class="rsvp-subtitle">Please confirm your attendance by selecting your name below</p>
+    <div class="home hz-margin">
+        <h3>We're getting married</h3>
+        <h1>Lakmi. & Sukitha.</h1>
+        <p class="couple-description">Two souls, one beautiful journey ahead</p>
+        <div class="container-out">
             
-            <form id="rsvpForm" class="rsvp-form">
-                <!-- Guest Name Selector -->
-                <div class="form-group">
-                    <label for="guestName" class="form-label">Your Name *</label>
-                    <select id="guestName" name="guestName" class="form-input" required>
-                        <option value="">-- Select your name --</option>
-                    </select>
-                    <small class="form-help">Can't find your name? <a href="#" onclick="showCustomNameInput()">Click here</a></small>
-                </div>
+            <div class="container-in text">
+                Thursday, May 28, 2026 <br>
+                Saminro Grand Palace, Makola
+                <p class="rsvp-prompt">✨ Secure your spot in our celebration ✨</p>
+                <button class="huge-btn" onclick="document.getElementById('registry').scrollIntoView({behavior: 'smooth'})">CONFIRM YOUR COMING</button>
+            </div>
+            <div class="home-img" id="home-img-lg"></div>
+        </div>
+    </div>
 
-                <!-- Custom Name Input (Hidden) -->
-                <div id="customNameDiv" class="form-group" style="display:none;">
-                    <label for="customName" class="form-label">Enter your name</label>
-                    <input type="text" id="customName" name="customName" class="form-input" placeholder="Your full name">
-                </div>
 
-                <!-- Attendance -->
-                <div class="form-group">
-                    <label class="form-label">Will you be attending? *</label>
-                    <div class="radio-group">
-                        <label class="radio-label">
-                            <input type="radio" name="attendance" value="yes" required> Yes, I'll be there! 🎉
-                        </label>
-                        <label class="radio-label">
-                            <input type="radio" name="attendance" value="no" required> Sorry, can't make it 😢
-                        </label>
+    <div class="home-img home-img-sm"></div>
+    <div class="timeline hz-margin reveal">
+        <h2>Celebrating Our Love <br>
+            With Those We Love
+        </h2>
+        <div class="timeline-container">
+            <div class="timeline-img"></div>
+            <div class="timings">
+                <h3>✨ The Sacred Poruwa Ceremony ✨</h3>
+                <div class="ceremony-time">10:00 AM</div>
+                <div class="text">Thursday, May 28, 2026 <br>
+                    Saminro Grand Palace, Makola</div>
+            </div>
+            </div>
+        </div>
+    </div>
+
+
+    <div class="v-reposition-container">
+        <div class="h-reposition-container">
+
+
+            <div id="story" class="hz-margin">
+                <h3 class="reveal">A Journey of <br>
+                    Love & Tradition
+                </h3>
+                <p class="text reveal">Our story is one of serendipity and shared dreams, woven through countless moments of laughter and understanding. From the first conversation to today, every step has brought us closer. We believe that true love is not just about finding the perfect person, but about building a beautiful life together, honoring our heritage, and creating memories that will last a lifetime. Lakmi and Sukitha – two hearts, now beating as one.</p>
+            </div>
+
+
+            <div class="gallery hz-margin reveal">
+                <div class="gallery-img"></div>
+                <div class="gallery-img"></div>
+                <div class="gallery-img"></div>
+            </div>
+
+
+            <div class="quote reveal">
+                <h1>“To the world you are one person, but to one person you are the world”.</h1>
+                <div class="author text">A Blessing for Lakmi & Sukitha</div>
+            </div>
+
+
+            <div class="hands" id="parallax1"></div>
+
+
+            <div id="stay">
+                <h2 class="reveal">Travel and Stay</h2>
+                <div class="stay-container reveal">
+                    <div class="stay-item">
+                        <h3>01. <br>
+                            Getting There
+                        </h3>
+                        <div class="text">Easy-to-follow <br> directions to the venue</div>
+                        <div class="text links">MAP & DETAILS</div>
+                    </div>
+                    <div class="stay-item">
+                        <h3>02. <br>
+                            Once You're There
+                        </h3>
+                        <div class="text">Some fun things to do in <br> the area</div>
+                        <div class="text links">OUR RECOMMENDATIONS</div>
+                    </div>
+                    <div class="stay-item">
+                        <h3>03. <br>
+                            Where to Stay
+                        </h3>
+                        <div class="text">Hotels and B&Bs <br> to check out</div>
+                        <div class="text links">LODGING OPTIONS</div>
                     </div>
                 </div>
+            </div>
 
-                <!-- Plus Ones -->
-                <div class="form-group" id="plusOneGroup">
-                    <label for="numberOfPlusOnes" class="form-label">Including how many guests?</label>
-                    <select id="numberOfPlusOnes" name="numberOfPlusOnes" class="form-input">
-                        <option value="0">Just me</option>
-                        <option value="1">Me + 1 guest</option>
-                        <option value="2">Me + 2 guests</option>
-                        <option value="3">Me + 3 guests</option>
-                        <option value="4">Me + 4 guests</option>
-                    </select>
-                </div>
 
-                <!-- Plus One Names -->
-                <div id="plusOneNamesDiv"></div>
+            <div id="registry">
+                <div class="registry-container reveal">
+                    <h3>✨ Join Our Celebration ✨</h3>
+                    <p class="text">We cannot imagine this day without you! Please select your name below and confirm your presence, so we can reserve a special seat for you in our hearts and at our table.</p>
+                    
+                    <form id="rsvpForm" class="rsvp-form">
+                        <div class="form-group">
+                            <label for="guestName">You are... *</label>
+                            <select id="guestName" name="guestName" required>
+                                <option value="">✨ Select your name ✨</option>
+                            </select>
+                        </div>
 
-                <!-- Dietary Preferences -->
-                <div class="form-group">
-                    <label for="dietaryPreferences" class="form-label">Dietary Preferences</label>
-                    <select id="dietaryPreferences" name="dietaryPreferences" class="form-input">
-                        <option value="">No restrictions</option>
-                        <option value="veg">Vegetarian</option>
-                        <option value="vegan">Vegan</option>
-                        <option value="gluten-free">Gluten-free</option>
-                        <option value="halal">Halal</option>
-                        <option value="kosher">Kosher</option>
-                        <option value="other">Other (please specify)</option>
-                    </select>
-                </div>
+                        <div class="form-group">
+                            <label>Your Response? *</label>
+                            <div class="radio-group">
+                                <label class="radio-option">
+                                    <input type="radio" name="attendance" value="Yes, I'll be there!" required>
+                                    <span>💕 Yes, I'll be there!</span>
+                                </label>
+                                <label class="radio-option">
+                                    <input type="radio" name="attendance" value="Unable to attend" required>
+                                    <span>😢 Unable to attend</span>
+                                </label>
+                            </div>
+                        </div>
 
-                <!-- Other Dietary Info -->
-                <div class="form-group" id="otherDietaryDiv" style="display:none;">
-                    <label for="otherDietary" class="form-label">Please specify your dietary requirements</label>
-                    <textarea id="otherDietary" name="otherDietary" class="form-input form-textarea" rows="3" placeholder="Your dietary requirements..."></textarea>
-                </div>
+                        <div class="form-group">
+                            <label for="email">Your Email *</label>
+                            <input type="email" id="email" name="email" placeholder="your.email@example.com" required>
+                        </div>
 
-                <!-- Special Requests -->
-                <div class="form-group">
-                    <label for="specialRequests" class="form-label">Special Requests / Messages</label>
-                    <textarea id="specialRequests" name="specialRequests" class="form-input form-textarea" rows="3" placeholder="Anything special you'd like us to know? 🎊"></textarea>
+                        <button type="submit" class="huge-btn">✨ CONFIRM MY SEAT ✨</button>
+                        <p class="form-status" id="formStatus"></p>
+                    </form>
                 </div>
+                <div class="registry-img registry-img-lg" id="parallax2"></div>
+            </div>
+            <div class="registry-img registry-img-sm"></div>
 
-                <!-- Email for confirmation -->
-                <div class="form-group">
-                    <label for="guestEmail" class="form-label">Email (for RSVP confirmation)</label>
-                    <input type="email" id="guestEmail" name="guestEmail" class="form-input" placeholder="your.email@example.com">
-                </div>
 
-                <!-- Submit Button -->
-                <button type="submit" class="submit-btn">Submit RSVP 💌</button>
-                <div id="successMessage" class="success-message" style="display:none;">
-                    ✅ Thank you! Your RSVP has been received. We can't wait to celebrate with you!
-                </div>
-                <div id="errorMessage" class="error-message" style="display:none;">
-                    ❌ Error submitting form. Please refresh and try again.
-                </div>
-            </form>
+            <div class="parting-message reveal">
+                <h1>We Can't Wait to Celebrate! 💕</h1>
+                <p class="text">Thank you for taking the moment to RSVP and be part of our journey.</p>
+            </div>
+
+
+            <footer>
+                <h2>Contact Us</h2>
+                <h3 class="text">Seetha: 071 082 0691</h3>
+                <h3 class="text">Lakmi: 071 217 1769</h3>
+                <div class="text" style="margin-top: 2vh; opacity: 0.7;">© 2026 Lakmi & Sukitha's Wedding</div>
+            </footer>
         </div>
-    </section>
-
-    <!-- Footer -->
-    <footer class="footer">
-        <p>Looking forward to celebrating with you! 💕</p>
-        <p class="footer-credit">Made with love for your special day</p>
-    </footer>
+    </div>
 
     <script src="js/script.js"></script>
 </body>

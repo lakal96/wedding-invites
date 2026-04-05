@@ -2,17 +2,39 @@
   "couple": {
     "bride": "Lakmi",
     "groom": "Sukitha",
-    "photoUrl": "couple-photo.jpg"
+    "photoUrl": "couple-photo.jpg",
+    "additionalPhotos": [
+      "photo1.jpg",
+      "photo2.jpg",
+      "photo3.jpg",
+      "photo4.jpg"
+    ]
   },
-  "story": "After 10+ wonderful years together, we've built a beautiful life filled with love and happiness. We're a couple who truly enjoy life's every moment. Now we're ready to celebrate our love with everyone who matters to us!",
-  "weddingDate": "Saturday, May 22, 2026",
-  "weddingTime": "Evening: 6:00 PM onwards",
+  "story": "As we embark on this beautiful journey of marriage, we are grateful for the love and blessings of our families and friends. We joyfully invite you to celebrate this special moment with us as we unite our hearts and families in matrimony.",
+  "weddingDate": "Thursday, May 28, 2026",
+  "weddingTime": "9:00 AM to 4:00 PM",
+  "poruwaTime": "10:00 AM",
   "venue": {
-    "name": "Waters Edge",
-    "address": "Add your venue address here"
+    "name": "Saminro Grand Palace",
+    "address": "Makola"
   },
-  "events": "Evening Ceremony at 6:00 PM | Reception & Dinner",
-  "dressCode": "Traditional / Festive Attire",
+  "ceremonyStart": "Poruwa Ceremony at 10:00 AM",
+  "rsvpDeadline": "May 18, 2026",
+  "contacts": [
+    { "name": "Seetha", "phone": "071 082 0691" },
+    { "name": "Lakmi", "phone": "071 217 1769" }
+  ],
+  "parents": [
+    { "name": "Mr. & Mrs. Gamage" },
+    { "name": "Mr. & Mrs. Amadeva" }
+  ],
   "formspreeId": "",
-  "googleSheetsUrl": ""
+  "googleSheetsUrl": "",
+  "guests": [
+    { "name": "Guest Name 1" },
+    { "name": "Guest Name 2" },
+    { "name": "Guest Name 3" },
+    { "name": "Guest Name 4" },
+    { "name": "Guest Name 5" }
+  ]
 }
