@@ -1,0 +1,18 @@
+{
+  "couple": {
+    "bride": "Lakmi",
+    "groom": "Sukitha",
+    "photoUrl": "couple-photo.jpg"
+  },
+  "story": "After 10+ wonderful years together, we've built a beautiful life filled with love and happiness. We're a couple who truly enjoy life's every moment. Now we're ready to celebrate our love with everyone who matters to us!",
+  "weddingDate": "Saturday, May 22, 2026",
+  "weddingTime": "Evening: 6:00 PM onwards",
+  "venue": {
+    "name": "Waters Edge",
+    "address": "Add your venue address here"
+  },
+  "events": "Evening Ceremony at 6:00 PM | Reception & Dinner",
+  "dressCode": "Traditional / Festive Attire",
+  "formspreeId": "",
+  "googleSheetsUrl": ""
+}

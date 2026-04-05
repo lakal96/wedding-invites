@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Our Wedding Celebration</title>
+    <link rel="stylesheet" href="css/styles.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Lato:wght@300;400;700&family=Dancing+Script:wght@400;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <div class="nav-logo">💕 Our Wedding</div>
+            <ul class="nav-menu">
+                <li class="nav-item"><a href="#couple" class="nav-link">Our Story</a></li>
+                <li class="nav-item"><a href="#venue" class="nav-link">Venue</a></li>
+                <li class="nav-item"><a href="#rsvp" class="nav-link">RSVP</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- Hero Section with Couple Photo -->
+    <section class="hero">
+        <div class="hero-content">
+            <h1 class="hero-title">We're Getting Married!</h1>
+            <p class="hero-subtitle" id="coupleNames">Loading...</p>
+        </div>
+        <div class="couple-photo-container">
+            <img id="couplePhoto" src="placeholder.jpg" alt="Couple Photo" class="couple-photo">
+        </div>
+    </section>
+
+    <!-- Our Story Section -->
+    <section id="couple" class="story-section">
+        <div class="container">
+            <h2 class="section-title">Our Love Story</h2>
+            <div class="story-content">
+                <p id="storyText" class="story-text">Loading story...</p>
+                <div class="heart-divider">💕</div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Wedding Details Section -->
+    <section id="venue" class="details-section">
+        <div class="container">
+            <h2 class="section-title">Wedding Details</h2>
+            <div class="details-grid">
+                <div class="detail-card">
+                    <div class="detail-icon">📅</div>
+                    <h3>Date & Time</h3>
+                    <p id="weddingDate">Loading...</p>
+                    <p id="weddingTime" class="time-detail">Loading...</p>
+                </div>
+                <div class="detail-card">
+                    <div class="detail-icon">📍</div>
+                    <h3>Venue</h3>
+                    <p id="venueName" class="venue-name">Loading...</p>
+                    <p id="venueAddress" class="venue-address">Loading...</p>
+                </div>
+                <div class="detail-card">
+                    <div class="detail-icon">🎭</div>
+                    <h3>Events</h3>
+                    <p id="eventDetails">Loading...</p>
+                </div>
+                <div class="detail-card">
+                    <div class="detail-icon">👗</div>
+                    <h3>Dress Code</h3>
+                    <p id="dressCode">Loading...</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- RSVP Section -->
+    <section id="rsvp" class="rsvp-section">
+        <div class="container">
+            <h2 class="section-title">RSVP</h2>
+            <p class="rsvp-subtitle">Please confirm your attendance by selecting your name below</p>
+            
+            <form id="rsvpForm" class="rsvp-form">
+                <!-- Guest Name Selector -->
+                <div class="form-group">
+                    <label for="guestName" class="form-label">Your Name *</label>
+                    <select id="guestName" name="guestName" class="form-input" required>
+                        <option value="">-- Select your name --</option>
+                    </select>
+                    <small class="form-help">Can't find your name? <a href="#" onclick="showCustomNameInput()">Click here</a></small>
+                </div>
+
+                <!-- Custom Name Input (Hidden) -->
+                <div id="customNameDiv" class="form-group" style="display:none;">
+                    <label for="customName" class="form-label">Enter your name</label>
+                    <input type="text" id="customName" name="customName" class="form-input" placeholder="Your full name">
+                </div>
+
+                <!-- Attendance -->
+                <div class="form-group">
+                    <label class="form-label">Will you be attending? *</label>
+                    <div class="radio-group">
+                        <label class="radio-label">
+                            <input type="radio" name="attendance" value="yes" required> Yes, I'll be there! 🎉
+                        </label>
+                        <label class="radio-label">
+                            <input type="radio" name="attendance" value="no" required> Sorry, can't make it 😢
+                        </label>
+                    </div>
+                </div>
+
+                <!-- Plus Ones -->
+                <div class="form-group" id="plusOneGroup">
+                    <label for="numberOfPlusOnes" class="form-label">Including how many guests?</label>
+                    <select id="numberOfPlusOnes" name="numberOfPlusOnes" class="form-input">
+                        <option value="0">Just me</option>
+                        <option value="1">Me + 1 guest</option>
+                        <option value="2">Me + 2 guests</option>
+                        <option value="3">Me + 3 guests</option>
+                        <option value="4">Me + 4 guests</option>
+                    </select>
+                </div>
+
+                <!-- Plus One Names -->
+                <div id="plusOneNamesDiv"></div>
+
+                <!-- Dietary Preferences -->
+                <div class="form-group">
+                    <label for="dietaryPreferences" class="form-label">Dietary Preferences</label>
+                    <select id="dietaryPreferences" name="dietaryPreferences" class="form-input">
+                        <option value="">No restrictions</option>
+                        <option value="veg">Vegetarian</option>
+                        <option value="vegan">Vegan</option>
+                        <option value="gluten-free">Gluten-free</option>
+                        <option value="halal">Halal</option>
+                        <option value="kosher">Kosher</option>
+                        <option value="other">Other (please specify)</option>
+                    </select>
+                </div>
+
+                <!-- Other Dietary Info -->
+                <div class="form-group" id="otherDietaryDiv" style="display:none;">
+                    <label for="otherDietary" class="form-label">Please specify your dietary requirements</label>
+                    <textarea id="otherDietary" name="otherDietary" class="form-input form-textarea" rows="3" placeholder="Your dietary requirements..."></textarea>
+                </div>
+
+                <!-- Special Requests -->
+                <div class="form-group">
+                    <label for="specialRequests" class="form-label">Special Requests / Messages</label>
+                    <textarea id="specialRequests" name="specialRequests" class="form-input form-textarea" rows="3" placeholder="Anything special you'd like us to know? 🎊"></textarea>
+                </div>
+
+                <!-- Email for confirmation -->
+                <div class="form-group">
+                    <label for="guestEmail" class="form-label">Email (for RSVP confirmation)</label>
+                    <input type="email" id="guestEmail" name="guestEmail" class="form-input" placeholder="your.email@example.com">
+                </div>
+
+                <!-- Submit Button -->
+                <button type="submit" class="submit-btn">Submit RSVP 💌</button>
+                <div id="successMessage" class="success-message" style="display:none;">
+                    ✅ Thank you! Your RSVP has been received. We can't wait to celebrate with you!
+                </div>
+                <div id="errorMessage" class="error-message" style="display:none;">
+                    ❌ Error submitting form. Please refresh and try again.
+                </div>
+            </form>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <p>Looking forward to celebrating with you! 💕</p>
+        <p class="footer-credit">Made with love for your special day</p>
+    </footer>
+
+    <script src="js/script.js"></script>
+</body>
+</html>

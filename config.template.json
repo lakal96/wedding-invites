@@ -1,0 +1,17 @@
+{
+  "couple": {
+    "bride": "Bride Full Name",
+    "groom": "Groom Full Name",
+    "photoUrl": "couple-photo.jpg"
+  },
+  "story": "Write your love story here in 2-3 sentences. Talk about how you met, what makes your relationship special, and why this day matters to you.",
+  "weddingDate": "Saturday, May 15, 2026",
+  "weddingTime": "6:00 PM onwards",
+  "venue": {
+    "name": "Venue Name / Hotel Name",
+    "address": "Street Address, City, State 12345, Country"
+  },
+  "events": "Evening Ceremony & Reception",
+  "dressCode": "Semi-Formal / Indian Festive Attire",
+  "formspreeId": ""
+}
