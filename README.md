@@ -244,3 +244,4 @@ wedding_invites/
 **Made with ❤️ for your special day! Congratulations! 🎊**
 
 Questions? Check the browser console (F12) for any error messages.
+# wedding-invites
