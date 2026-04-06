@@ -12,6 +12,10 @@
     --horizontal-margin-spacing:6rem;
     --grey-color-light: rgba(232,230,230,.6);
     --grey-color: rgba(232,230,230,1);
+    --burgundy: #5c2e3a;
+    --gold: #c89456;
+    --dark: #212121;
+    --cream: #faf8f3;
 }
 
 /* <===================UNIVERSAL CSS===================> */
@@ -36,6 +40,19 @@ h1{
 h2{
     font-size: var(--h2-size);
     font-weight: bold;
+    position: relative;
+    display: inline-block;
+    padding-bottom: 15px;
+}
+h2:after{
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 60px;
+    height: 3px;
+    background: linear-gradient(90deg, var(--gold), var(--burgundy));
+    border-radius: 2px;
 }
 h3{
     font-size: var(--h3-size);
@@ -60,16 +77,41 @@ h3{
 .huge-btn{
     display: block;
     font-size: 1rem;
-    background: transparent;
-    border: 1px solid #212121;
+    background: linear-gradient(135deg, var(--burgundy), var(--gold));
+    color: white;
+    border: 2px solid var(--gold);
     padding: 25px 50px;
     border-radius: 50px;
     width: fit-content;
     margin: 30px 0;
+    cursor: pointer;
+    transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    position: relative;
+    overflow: hidden;
+    box-shadow: 0 4px 15px rgba(92, 46, 58, 0.2);
+    font-weight: 600;
+    letter-spacing: 0.5px;
 }
+
+.huge-btn:before{
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: rgba(255, 255, 255, 0.2);
+    transition: left 0.4s ease;
+}
+
 .huge-btn:hover{
-    color: grey;
-    border-color: grey;
+    transform: translateY(-3px);
+    box-shadow: 0 8px 25px rgba(92, 46, 58, 0.35);
+    color: white;
+}
+
+.huge-btn:hover:before{
+    left: 100%;
 }
 .v-reposition-container{
     position: absolute;
@@ -111,10 +153,13 @@ nav ul li a{
     border-radius: 3px;
     text-transform: uppercase;
     text-decoration: none;
+    position: relative;
+    transition: all 0.3s ease;
 }
 a:hover{
-    color: orange;
+    color: var(--gold);
     transition: .5s;
+    text-shadow: 0 0 10px rgba(200, 148, 86, 0.3);
 }
 .checkbtn{
     font-size: 30px;
@@ -220,25 +265,37 @@ a:hover{
     background-image: url(../couple-photo.jpg);
     background-size: cover;
     background-position: center;
-    box-shadow: inset 0 0 60px rgba(0, 0, 0, 0.3), inset 0 0 100px rgba(0, 0, 0, 0.1);
-    -webkit-mask-image: radial-gradient(ellipse at center, white 0%, white 60%, rgba(255,255,255,0.8) 85%, transparent 100%);
-    mask-image: radial-gradient(ellipse at center, white 0%, white 60%, rgba(255,255,255,0.8) 85%, transparent 100%);
+    background-repeat: no-repeat;
+    box-shadow: 0 10px 40px rgba(0, 0, 0, 0.2);
+    animation: floatImage 6s ease-in-out infinite;
+    position: relative;
+    z-index: 1;
+}
+
+@keyframes floatImage{
+    0%, 100% {
+        transform: translateY(0px);
+    }
+    50% {
+        transform: translateY(-20px);
+    }
 }
 .home-img-sm{
     display: none;
     width: 100%;
     margin: 20px 0 0 0;
     height: 50vh;
-    background-image: url(../bride-vector.webp);
+    background-color: var(--cream);
     background-size: contain;
     background-position: center;
     background-repeat: no-repeat;
 }
 #home-img-lg{
     display: block;
+    position: relative;
     height: 70vh;
     width: 30vw;
-    background-position-x: 0;
+    background-position: center;
 }
 @media (max-width:1000px){
     .container-out{
@@ -261,13 +318,15 @@ a:hover{
 
 .timeline{
     display: block;
-    background-color: var(--grey-color-light);
+    background: linear-gradient(135deg, rgba(92, 46, 58, 0.03), rgba(200, 148, 86, 0.03));
     float: left;
     position: relative;
     top: -30vh;
     width: 100%;
     backdrop-filter: blur(4px);
     padding: 8vh var(--horizontal-margin-spacing);
+    border-top: 2px solid rgba(200, 148, 86, 0.3);
+    border-bottom: 2px solid rgba(200, 148, 86, 0.3);
 }
 .timeline-container{
     display: flex;
@@ -316,15 +375,21 @@ a:hover{
     display: flex;
     flex-direction: row;
     margin: 10vh 0;
+    background: linear-gradient(135deg, rgba(92, 46, 58, 0.02), rgba(200, 148, 86, 0.02));
+    padding: 5vh 3rem;
+    border-radius: 15px;
+    border-left: 4px solid var(--gold);
 }
 #story h3{
     width: 40vw;
+    color: var(--burgundy);
 }
 #story p{
     width: 40vw;
     text-align: justify;
     font-size: var(--h3-size);
     line-height: var(--h3-size);
+    color: #444;
 }
 @media (max-width:1000px){
     .h-reposition-container{
@@ -361,9 +426,16 @@ a:hover{
     margin: 10px;
     background-size: cover;
     background-position: center;
-    box-shadow: inset 0 0 40px rgba(0, 0, 0, 0.25), inset 0 0 60px rgba(0, 0, 0, 0.1);
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2), inset 0 0 40px rgba(0, 0, 0, 0.25), inset 0 0 60px rgba(0, 0, 0, 0.1);
     -webkit-mask-image: radial-gradient(ellipse at center, white 0%, white 70%, rgba(255,255,255,0.8) 85%, transparent 100%);
     mask-image: radial-gradient(ellipse at center, white 0%, white 70%, rgba(255,255,255,0.8) 85%, transparent 100%);
+    transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    position: relative;
+}
+
+.gallery-img:hover{
+    transform: scale(1.05) translateY(-5px);
+    box-shadow: 0 15px 40px rgba(92, 46, 58, 0.3), inset 0 0 40px rgba(0, 0, 0, 0.25), inset 0 0 60px rgba(0, 0, 0, 0.1);
 }
 .gallery-img:nth-child(1){
     background-image: url(../photo1.jpg);
@@ -395,12 +467,29 @@ a:hover{
 /* <===================QUOTE===================> */
 .quote{
     margin: 10vh 0;
+    padding: 5vh 2rem;
+    background: linear-gradient(135deg, rgba(92, 46, 58, 0.05), rgba(200, 148, 86, 0.05));
+    border-radius: 15px;
+    position: relative;
+    overflow: hidden;
 }
+
+.quote:before{
+    content: "«";
+    position: absolute;
+    top: -30px;
+    left: 20px;
+    font-size: 120px;
+    color: var(--gold);
+    opacity: 0.15;
+}
+
 .quote h1{
     width: 55vw;
     font-size: 4rem;
     text-align: center;
     margin: auto;
+    color: var(--burgundy);
 }
 .author{
     text-align: center;
@@ -428,18 +517,57 @@ a:hover{
 
     /* <===================STAY===================> */
     #stay{
-        background-color: var(--grey-color);
+        background: linear-gradient(135deg, var(--grey-color-light), var(--grey-color));
         padding: 10vh var(--horizontal-margin-spacing);
         width: 100%;
-}
+        position: relative;
+        overflow: hidden;
+    }
+    
+    #stay:before{
+        content: '';
+        position: absolute;
+        top: 0;
+        right: 0;
+        width: 300px;
+        height: 300px;
+        background: radial-gradient(circle, rgba(200, 148, 86, 0.1), transparent);
+        border-radius: 50%;
+    }
+    
+    #stay h2{
+        position: relative;
+        z-index: 1;
+    }
+
 .stay-container{
     display: flex;
     flex-direction: row;
     justify-content: space-around;
     margin: 20vh 0;
+    position: relative;
+    z-index: 1;
 }
-.stay-item .text{
-    margin: 20px 0;
+
+.stay-item{
+    padding: 2rem;
+    border-radius: 10px;
+    background: rgba(255, 255, 255, 0.7);
+    transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    border: 1px solid rgba(255, 255, 255, 0.5);
+    backdrop-filter: blur(5px);
+}
+
+.stay-item:hover{
+    transform: translateY(-10px) scale(1.02);
+    background: rgba(255, 255, 255, 0.95);
+    box-shadow: 0 15px 40px rgba(92, 46, 58, 0.15);
+    border-color: rgba(200, 148, 86, 0.3);
+}
+
+.stay-item h3{
+    color: var(--burgundy);
+    margin-bottom: 1rem;
 }
 .links{
     cursor: pointer;
@@ -474,13 +602,15 @@ a:hover{
 
 /* <===================RSVP FORM===================> */
 .rsvp-form{
-    background: rgba(255, 255, 255, 0.95);
+    background: linear-gradient(135deg, rgba(250, 248, 243, 0.95), rgba(255, 255, 255, 0.98));
     padding: 3vh 2.5vh;
-    border-radius: 8px;
+    border-radius: 12px;
     margin-top: 2vh;
-    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+    box-shadow: 0 8px 25px rgba(92, 46, 58, 0.15), inset 0 1px 0 rgba(255, 255, 255, 0.6);
     width: 100%;
     max-width: 100%;
+    border: 1px solid rgba(200, 148, 86, 0.2);
+    backdrop-filter: blur(10px);
 }
 
 .form-group{
@@ -493,34 +623,40 @@ a:hover{
     font-family: 'Quicksand', sans-serif;
     font-weight: 600;
     margin-bottom: 0.5rem;
-    color: #2c2c2c;
+    color: var(--burgundy);
     font-size: 0.95rem;
+    letter-spacing: 0.3px;
 }
 
 .form-group input,
 .form-group select,
 .form-group textarea{
     padding: 0.8rem;
-    border: 1px solid #ddd;
-    border-radius: 4px;
+    border: 1.5px solid #ddd;
+    border-radius: 6px;
     font-family: 'Quicksand', sans-serif;
     font-size: 0.95rem;
     color: #333;
     width: 100%;
     max-width: 100%;
+    background: rgba(255, 255, 255, 0.9);
+    transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
 }
 
 .form-group input:focus,
 .form-group select:focus,
 .form-group textarea:focus{
     outline: none;
-    border-color: #c89456;
-    box-shadow: 0 0 0 3px rgba(200, 148, 86, 0.1);
+    border-color: var(--gold);
+    box-shadow: 0 0 0 3px rgba(200, 148, 86, 0.15), 0 2px 10px rgba(200, 148, 86, 0.1);
+    background: rgba(255, 255, 255, 1);
+    transform: translateY(-2px);
 }
 
 .form-group textarea{
     resize: vertical;
     min-height: 80px;
+    font-family: 'Quicksand', sans-serif;
 }
 
 .radio-group{
@@ -536,13 +672,22 @@ a:hover{
     cursor: pointer;
     font-family: 'Quicksand', sans-serif;
     color: #333;
+    padding: 0.5rem 0.8rem;
+    border-radius: 6px;
+    transition: all 0.3s ease;
+    background: rgba(200, 148, 86, 0.03);
+}
+
+.radio-option:hover{
+    background: rgba(200, 148, 86, 0.08);
+    transform: translateX(5px);
 }
 
 .radio-option input[type="radio"]{
     width: 18px;
     height: 18px;
     cursor: pointer;
-    accent-color: #c89456;
+    accent-color: var(--gold);
     flex-shrink: 0;
 }
 
@@ -556,25 +701,42 @@ a:hover{
 .form-status{
     font-family: 'Quicksand', sans-serif;
     margin-top: 1rem;
-    padding: 1rem;
-    border-radius: 4px;
+    padding: 1.2rem;
+    border-radius: 8px;
     display: none;
     font-weight: 600;
     line-height: 1.5;
+    animation: slideInUp 0.4s ease;
+    border-left: 4px solid transparent;
+}
+
+@keyframes slideInUp{
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
 }
 
 .form-status.success{
-    background-color: #d4edda;
+    background: linear-gradient(135deg, #d4edda, #e8f5e9);
     color: #155724;
     border: 1px solid #c3e6cb;
+    border-left: 4px solid #28a745;
     display: block;
+    box-shadow: 0 4px 12px rgba(40, 167, 69, 0.15);
 }
 
 .form-status.error{
-    background-color: #f8d7da;
+    background: linear-gradient(135deg, #f8d7da, #ffebee);
     color: #721c24;
     border: 1px solid #f5c6cb;
+    border-left: 4px solid #dc3545;
     display: block;
+    box-shadow: 0 4px 12px rgba(220, 53, 69, 0.15);
 }
 
 @media (max-width:1000px){
@@ -658,18 +820,51 @@ footer{
     margin-top: 20vh;
     height: fit-content;
     width: 100%;
-    background-color: var(--grey-color);
+    background: linear-gradient(135deg, rgba(92, 46, 58, 0.1), rgba(200, 148, 86, 0.08));
     padding: 10vh 6rem;
     text-align: center;
+    border-top: 2px solid rgba(200, 148, 86, 0.3);
+    position: relative;
+    overflow: hidden;
 }
+
+footer:before{
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 300px;
+    height: 300px;
+    background: radial-gradient(circle, rgba(200, 148, 86, 0.1), transparent);
+    border-radius: 50%;
+    animation: floatBg 6s ease-in-out infinite;
+}
+
+@keyframes floatBg{
+    0%, 100% { transform: translateY(0px); }
+    50% { transform: translateY(20px); }
+}
+
 footer h2{
     font-size: 2rem;
     font-weight: bold;
     margin-bottom: 2vh;
+    color: var(--burgundy);
+    position: relative;
+    z-index: 1;
 }
 footer h3{
     font-size: 1.1rem;
     margin-bottom: 1vh;
+    color: #555;
+    position: relative;
+    z-index: 1;
+    transition: all 0.3s ease;
+}
+
+footer h3:hover{
+    color: var(--gold);
+    transform: translateY(-2px);
 }
 @media (max-width:1000px){
     footer{
