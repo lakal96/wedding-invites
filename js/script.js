@@ -4,23 +4,29 @@ const parallax2 = document.getElementById("parallax2");
 
 window.addEventListener("scroll", function()
 {
-    let offset = window.pageYOffset;
-    parallax.style.backgroundPositionX = offset*(-0.3)-100 + "px";
+    if (parallax) {
+        let offset = window.pageYOffset;
+        parallax.style.backgroundPositionX = offset*(-0.3)-100 + "px";
+    }
 })
 
 
 window.addEventListener("scroll", function()
 {
-    let offset = window.pageYOffset;
-    offset-=3100;
-    parallax1.style.backgroundPositionY = offset*(0.1) + "px";
+    if (parallax1) {
+        let offset = window.pageYOffset;
+        offset-=3100;
+        parallax1.style.backgroundPositionY = offset*(0.1) + "px";
+    }
 })
 
 window.addEventListener("scroll", function()
 {
-    let offset = window.pageYOffset;
-    offset-=4800;
-    parallax2.style.backgroundPositionY = offset*(-0.1) + "px";
+    if (parallax2) {
+        let offset = window.pageYOffset;
+        offset-=4800;
+        parallax2.style.backgroundPositionY = offset*(-0.1) + "px";
+    }
 })
 
 function myFunction() {
@@ -32,6 +38,12 @@ document.addEventListener('DOMContentLoaded', async function() {
     const rsvpForm = document.getElementById('rsvpForm');
     const guestSelect = document.getElementById('guestName');
     let googleSheetsUrl = '';
+    
+    // Only proceed if form exists
+    if (!rsvpForm || !guestSelect) {
+        console.warn('RSVP form or guest select not found');
+        return;
+    }
     
     // Load guest list and config from config.json
     try {
@@ -137,6 +149,8 @@ document.addEventListener('DOMContentLoaded', async function() {
 const reveals = document.querySelectorAll('.reveal');
 
 function reveal() {
+    if (!reveals || reveals.length === 0) return;
+    
     for (let i = 0; i < reveals.length; i++) {
         const windowheight = window.innerHeight;
         const revealtop = reveals[i].getBoundingClientRect().top;
