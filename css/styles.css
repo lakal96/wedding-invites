@@ -262,7 +262,7 @@ a:hover{
     padding-right: 2vw;
 }
 .home-img{
-    background-image: url(../couple-photo.jpeg);
+    background-image: url(../images/couple-photo.jpeg);
     background-size: cover;
     background-position: center;
     background-repeat: no-repeat;
@@ -334,7 +334,7 @@ a:hover{
     margin: 8vh 0;
 }
 .timeline-img{
-    background-image: url(../photo1.jpeg);
+    background-image: url(../images/photo1.jpeg);
     height: 70vh;
     width: 30vw;
     background-position: center;
@@ -438,15 +438,15 @@ a:hover{
     box-shadow: 0 15px 40px rgba(92, 46, 58, 0.3), inset 0 0 40px rgba(0, 0, 0, 0.25), inset 0 0 60px rgba(0, 0, 0, 0.1);
 }
 .gallery-img:nth-child(1){
-    background-image: url(../photo1.jpeg);
+    background-image: url(../images/photo1.jpeg);
     background-position-x: right;
 }
 .gallery-img:nth-child(3){
-    background-image: url(../photo2.jpeg);
+    background-image: url(../images/photo2.jpeg);
 }
 .gallery-img:nth-child(2){
     background-position-y: top;
-    background-image: url(../photo3.jpeg);
+    background-image: url(../images/photo3.jpeg);
 }
 @media (max-width:1000px){
     .gallery{
@@ -536,10 +536,10 @@ a:hover{
     box-shadow: 0 18px 45px rgba(92,46,58,0.25);
 }
 .venue-photo-hall {
-    background-image: url(../Wedding-hall.jpeg);
+    background-image: url(../images/Wedding-hall.jpeg);
 }
 .venue-photo-hotel {
-    background-image: url(../Wedding-hotel.jpeg);
+    background-image: url(../images/Wedding-hotel.jpeg);
 }
 .venue-caption{
     text-align: center;
@@ -565,7 +565,7 @@ a:hover{
 .hands{
     height: 120vh;
     width: 100%;
-    background-image: url(../Couple-vector.jpeg);
+    background-image: url(../images/Couple-vector.jpeg);
     background-size: contain;
     background-position: center;
     background-attachment: fixed;
@@ -810,7 +810,7 @@ a:hover{
     display: block;
     height: 100vh;
     width: 40vw;
-    background-image: url(../Wedding-hall.jpeg);
+    background-image: url(../images/photo5.jpeg);
     background-size: cover;
     background-position-y: top;
     background-repeat: no-repeat;
