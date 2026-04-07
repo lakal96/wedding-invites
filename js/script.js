@@ -90,7 +90,10 @@ document.addEventListener('DOMContentLoaded', async function() {
             try {
                 const separator = googleSheetsGuestsUrl.includes('?') ? '&' : '?';
                 const url = `${googleSheetsGuestsUrl}${separator}action=guests`;
-                const response = await fetch(url, { method: 'GET' });
+                const response = await fetch(url, {
+                    method: 'GET',
+                    redirect: 'follow'
+                });
 
                 if (response.ok) {
                     const sheetData = await response.json();
@@ -144,15 +147,18 @@ document.addEventListener('DOMContentLoaded', async function() {
                 // Try sending to Google Sheets if URL is configured
                 if (googleSheetsUrl) {
                     try {
+                        // Google Apps Script does not handle CORS preflight.
+                        // mode: 'no-cors' sends a simple request; response is opaque
+                        // (status 0, type 'opaque') but the script still runs server-side.
                         const response = await fetch(googleSheetsUrl, {
                             method: 'POST',
-                            body: JSON.stringify(formData),
-                            headers: {
-                                'Content-Type': 'application/json'
-                            }
+                            mode: 'no-cors',
+                            redirect: 'follow',
+                            body: JSON.stringify(formData)
                         });
-                        
-                        if (response.ok) {
+
+                        // Opaque response means request reached the server — treat as success
+                        if (response.type === 'opaque' || response.ok) {
                             submitSuccess = true;
                             console.log('Data sent to Google Sheets successfully');
                         }
