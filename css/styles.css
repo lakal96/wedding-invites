@@ -580,35 +580,22 @@ a:hover{
 
 /* <===================SAVE THE DATE===================> */
 
-.save-the-date {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    gap: 16px;
-    margin-bottom: 2vh;
-    animation: fadeSlideDown 1.2s ease both;
-}
-
-.std-text {
+.std-badge {
+    display: inline-block;
     font-family: 'Cinzel', serif;
-    font-size: clamp(0.85rem, 1.8vw, 1.15rem);
-    letter-spacing: 0.3em;
+    font-size: 0.78rem;
+    letter-spacing: 0.28em;
     text-transform: uppercase;
-    background: linear-gradient(135deg, var(--gold) 0%, var(--burgundy) 60%, var(--gold) 100%);
+    padding: 5px 18px;
+    margin-bottom: 10px;
+    border-radius: 50px;
+    background: linear-gradient(135deg, var(--burgundy), var(--gold));
     background-size: 200% auto;
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-    background-clip: text;
-    animation: shimmer 4s linear infinite, fadeSlideDown 1.2s ease both;
-    white-space: nowrap;
-}
-
-.std-line {
-    flex: 1;
-    max-width: 100px;
-    height: 1px;
-    background: linear-gradient(90deg, transparent, var(--gold), transparent);
-    opacity: 0.6;
+    color: #fff;
+    font-weight: 700;
+    box-shadow: 0 3px 12px rgba(92,46,58,0.25);
+    animation: shimmer 4s linear infinite;
+    width: fit-content;
 }
 
 @keyframes shimmer {
