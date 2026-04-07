@@ -385,7 +385,7 @@ a:hover{
     }
 }
 
-/* <===================TIMELINE===================> */
+/* <===================TIMELINE / SCHEDULE===================> */
 
 .timeline{
     display: block;
@@ -399,27 +399,103 @@ a:hover{
     border-top: 2px solid rgba(200, 148, 86, 0.3);
     border-bottom: 2px solid rgba(200, 148, 86, 0.3);
 }
-.timeline-container{
-    display: flex;
-    flex-direction: row;
-    margin: 8vh 0;
+
+.schedule-header {
+    text-align: center;
+    margin-bottom: 6vh;
 }
-.timeline-img{
-    background-image: url(../images/photo1.jpeg);
-    height: 70vh;
-    width: 30vw;
-    background-position: center;
-    background-size: cover;
-    box-shadow: inset 0 0 50px rgba(0, 0, 0, 0.3), inset 0 0 80px rgba(0, 0, 0, 0.1);
-    -webkit-mask-image: radial-gradient(ellipse at center, white 0%, white 65%, rgba(255,255,255,0.8) 85%, transparent 100%);
-    mask-image: radial-gradient(ellipse at center, white 0%, white 65%, rgba(255,255,255,0.8) 85%, transparent 100%);
+
+.schedule-header h2 {
+    color: var(--burgundy);
+    margin-bottom: 1vh;
 }
-.timings{
-    margin: 30px;
+
+.schedule {
+    position: relative;
+    max-width: 600px;
+    margin: 0 auto;
+    padding-left: 20px;
 }
-.timeline-container .text{
-    padding: 1rem 0 1rem 4rem;
+
+.schedule::before {
+    content: '';
+    position: absolute;
+    left: calc(50% - 1px);
+    top: 0;
+    bottom: 0;
+    width: 2px;
+    background: linear-gradient(180deg, transparent, var(--gold), var(--burgundy), var(--gold), transparent);
+    opacity: 0.4;
 }
+
+.schedule-item {
+    display: grid;
+    grid-template-columns: 1fr 28px 1fr;
+    align-items: center;
+    gap: 16px;
+    margin-bottom: 3.5vh;
+    position: relative;
+}
+
+.schedule-item:nth-child(even) .schedule-time {
+    order: 3;
+    text-align: left;
+}
+
+.schedule-item:nth-child(even) .schedule-dot {
+    order: 2;
+}
+
+.schedule-item:nth-child(even) .schedule-detail {
+    order: 1;
+    text-align: right;
+}
+
+.schedule-time {
+    font-family: 'Cinzel', serif;
+    font-size: clamp(1.1rem, 2vw, 1.4rem);
+    font-weight: 700;
+    color: var(--burgundy);
+    text-align: right;
+    line-height: 1;
+}
+
+.schedule-time span {
+    font-size: 0.65em;
+    color: var(--gold);
+    display: block;
+    letter-spacing: 0.12em;
+}
+
+.schedule-dot {
+    width: 18px;
+    height: 18px;
+    border-radius: 50%;
+    background: linear-gradient(135deg, var(--burgundy), var(--gold));
+    box-shadow: 0 0 0 4px rgba(200,148,86,0.2);
+    justify-self: center;
+    flex-shrink: 0;
+    position: relative;
+    z-index: 1;
+}
+
+.schedule-detail {
+    text-align: left;
+}
+
+.schedule-title {
+    font-family: 'Quicksand', sans-serif;
+    font-size: clamp(0.95rem, 1.8vw, 1.15rem);
+    font-weight: 600;
+    color: var(--burgundy);
+    padding: 10px 16px;
+    background: rgba(255,255,255,0.6);
+    border-radius: 8px;
+    backdrop-filter: blur(4px);
+    border: 1px solid rgba(200,148,86,0.2);
+    display: inline-block;
+}
+
 @media (max-width:1000px){
     .timeline{
         background-color: var(--grey-color);
@@ -430,12 +506,15 @@ a:hover{
         backdrop-filter: blur(0);
         height: fit-content;
     }
-    .timeline-container{
-        flex-direction: column;
+    .schedule {
+        padding-left: 0;
+        max-width: 100%;
     }
-    .timeline-img{
-        height: 50vh;
-        width: 100%;
+    .schedule::before {
+        left: 50%;
+    }
+    .schedule-time {
+        font-size: 1rem;
     }
 }
 
