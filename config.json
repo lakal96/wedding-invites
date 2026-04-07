@@ -29,8 +29,8 @@
     { "name": "Mr. & Mrs. Amadeva" }
   ],
   "formspreeId": "",
-  "googleSheetsUrl": "",
-  "googleSheetsGuestsUrl": "",
+  "googleSheetsUrl": "https://script.google.com/macros/s/AKfycbx89xTfB3kYlVfAiIAv1oAUD6gzt6JsMESgkwyqKkVphqTyPTjSvVZWufJjJd0IXuQE/exec",
+  "googleSheetsGuestsUrl": "https://script.google.com/macros/s/AKfycbx89xTfB3kYlVfAiIAv1oAUD6gzt6JsMESgkwyqKkVphqTyPTjSvVZWufJjJd0IXuQE/exec",
   "guests": [
     { "name": "Guest Name 1" },
     { "name": "Guest Name 2" },
