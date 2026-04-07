@@ -33,6 +33,46 @@ function myFunction() {
     document.getElementById("check").checked = false;
 }
 
+// <===================SLIDESHOW===================>
+(function() {
+    const slides = document.querySelectorAll('.slide');
+    const dots   = document.querySelectorAll('.dot');
+    if (!slides.length) return;
+
+    let current = 0;
+    let timer;
+
+    function goTo(n) {
+        slides[current].classList.remove('active');
+        dots[current].classList.remove('active');
+        current = (n + slides.length) % slides.length;
+        slides[current].classList.add('active');
+        dots[current].classList.add('active');
+    }
+
+    function next() { goTo(current + 1); }
+    function prev() { goTo(current - 1); }
+
+    function startAuto() { timer = setInterval(next, 4000); }
+    function resetAuto()  { clearInterval(timer); startAuto(); }
+
+    document.querySelector('.slide-next').addEventListener('click', () => { next(); resetAuto(); });
+    document.querySelector('.slide-prev').addEventListener('click', () => { prev(); resetAuto(); });
+
+    dots.forEach((dot, i) => dot.addEventListener('click', () => { goTo(i); resetAuto(); }));
+
+    // Swipe support
+    let touchStartX = 0;
+    const slideshow = document.querySelector('.slideshow');
+    slideshow.addEventListener('touchstart', e => { touchStartX = e.changedTouches[0].clientX; }, { passive: true });
+    slideshow.addEventListener('touchend',   e => {
+        const diff = touchStartX - e.changedTouches[0].clientX;
+        if (Math.abs(diff) > 40) { diff > 0 ? next() : prev(); resetAuto(); }
+    }, { passive: true });
+
+    startAuto();
+})();
+
 // RSVP Form Handler
 document.addEventListener('DOMContentLoaded', async function() {
     const rsvpForm = document.getElementById('rsvpForm');
