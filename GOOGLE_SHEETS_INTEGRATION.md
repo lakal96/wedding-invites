@@ -4,7 +4,7 @@ This guide will help you connect your wedding RSVP form to a Google Sheet to aut
 
 ## Overview
 
-When guests submit the RSVP form, their responses (name, attendance, email, timestamp) are automatically sent to your Google Sheet.
+When guests submit the RSVP form, their responses are automatically sent to your Google Sheet.
 
 ---
 
@@ -16,21 +16,20 @@ When guests submit the RSVP form, their responses (name, attendance, email, time
 
 ## Step 2: Set Up Your Sheet Structure
 
-Create column headers in your spreadsheet:
+Create column headers in row 1:
 
-| A | B | C | D |
-|---|---|---|---|
-| Guest Name | Attending | Email | Timestamp |
-| | | | |
+| A | B | C | D | H | I |
+|---|---|---|---|---|---|
+| Timestamp | Guest Name | Attendance (Yes/No) | Number of Guests | Special Messages | Email |
 
-- **A1**: "Guest Name"
-- **B1**: "Attending"
-- **C1**: "Email"
-- **D1**: "Timestamp"
+- **A1**: "Timestamp"
+- **B1**: "Guest Name"
+- **C1**: "Attendance (Yes/No)"
+- **D1**: "Number of Guests"
+- **H1**: "Special Messages"
+- **I1**: "Email"
 
-**Optional columns** you can add:
-- E1: "Notes"
-- F1: "Date Submitted"
+Add all invited guest names under **B2:B** before sharing your link.
 
 ## Step 3: Create a Google Apps Script
 
@@ -39,26 +38,72 @@ Create column headers in your spreadsheet:
 3. Replace with this code:
 
 ```javascript
-function doPost(e) {
-  // Get the active sheet
+function doGet(e) {
+  const action = (e.parameter.action || '').toLowerCase();
   const sheet = SpreadsheetApp.getActiveSheet();
-  
-  // Parse incoming JSON data
-  const data = JSON.parse(e.postData.contents);
-  
-  // Append data to the sheet
-  sheet.appendRow([
-    data.guestName,
-    data.attendance,
-    data.email,
-    data.timestamp
-  ]);
-  
-  // Return success response
-  return ContentService.createTextOutput(JSON.stringify({
-    status: "success",
-    message: "RSVP recorded successfully"
-  })).setMimeType(ContentService.MimeType.JSON);
+
+  if (action === 'guests') {
+    const lastRow = sheet.getLastRow();
+    if (lastRow < 2) {
+      return jsonResponse({ guests: [] });
+    }
+
+    const values = sheet.getRange(2, 2, lastRow - 1, 1).getValues();
+    const guests = values
+      .filter(row => String(row[0] || '').trim())
+      .map(row => ({ name: String(row[0]).trim() }));
+
+    return jsonResponse({ guests: guests });
+  }
+
+  return jsonResponse({ status: 'ok', message: 'Use ?action=guests to fetch guest names.' });
+}
+
+function doPost(e) {
+  const sheet = SpreadsheetApp.getActiveSheet();
+  const data = JSON.parse(e.postData.contents || '{}');
+
+  const guestName = String(data.guestName || '').trim();
+  const attendance = String(data.attendance || '').trim();
+  const numberOfGuests = Number(data.numberOfGuests || 1);
+  const specialMessage = String(data.specialMessage || '').trim();
+  const email = String(data.email || '').trim();
+  const timestamp = String(data.timestamp || new Date().toLocaleString());
+
+  if (!guestName) {
+    return jsonResponse({ status: 'error', message: 'Guest name is required.' });
+  }
+
+  const lastRow = sheet.getLastRow();
+  let rowToUpdate = -1;
+
+  if (lastRow >= 2) {
+    const nameValues = sheet.getRange(2, 2, lastRow - 1, 1).getValues();
+    for (let i = 0; i < nameValues.length; i++) {
+      if (String(nameValues[i][0]).trim().toLowerCase() === guestName.toLowerCase()) {
+        rowToUpdate = i + 2;
+        break;
+      }
+    }
+  }
+
+  if (rowToUpdate === -1) {
+    sheet.appendRow([timestamp, guestName, attendance, numberOfGuests, '', '', '', specialMessage, email]);
+  } else {
+    sheet.getRange(rowToUpdate, 1).setValue(timestamp);
+    sheet.getRange(rowToUpdate, 3).setValue(attendance);
+    sheet.getRange(rowToUpdate, 4).setValue(numberOfGuests);
+    sheet.getRange(rowToUpdate, 8).setValue(specialMessage);
+    sheet.getRange(rowToUpdate, 9).setValue(email);
+  }
+
+  return jsonResponse({ status: 'success', message: 'RSVP recorded successfully' });
+}
+
+function jsonResponse(payload) {
+  return ContentService
+    .createTextOutput(JSON.stringify(payload))
+    .setMimeType(ContentService.MimeType.JSON);
 }
 ```
 
@@ -80,7 +125,7 @@ function doPost(e) {
 
 The URL looks like:
 ```
-https://script.google.com/macros/d/SCRIPT_ID/userweb
+https://script.google.com/macros/s/YOUR_DEPLOYMENT_ID/exec
 ```
 
 ## Step 5: Update Your Website Config
@@ -96,7 +141,8 @@ https://script.google.com/macros/d/SCRIPT_ID/userweb
 
 **After:**
 ```json
-"googleSheetsUrl": "https://script.google.com/macros/d/YOUR_SCRIPT_ID/userweb"
+"googleSheetsUrl": "https://script.google.com/macros/s/YOUR_DEPLOYMENT_ID/exec",
+"googleSheetsGuestsUrl": "https://script.google.com/macros/s/YOUR_DEPLOYMENT_ID/exec"
 ```
 
 ## Step 6: Verify It Works
@@ -105,7 +151,9 @@ https://script.google.com/macros/d/SCRIPT_ID/userweb
 2. Scroll to the RSVP form
 3. Fill in the form with test data:
    - Select a guest name
-   - Choose "Yes, I'll be there!" or "Unable to attend"
+  - Choose attendance (Yes/No)
+  - Enter number of guests
+  - Add optional special message
    - Enter test email
 4. Click **"✨ CONFIRM MY SEAT ✨"**
 5. You should see a green success message
@@ -120,7 +168,7 @@ https://script.google.com/macros/d/SCRIPT_ID/userweb
 
 ### Data doesn't appear in Sheet
 - Check that you granted permission when deploying the script
-- Verify the column headers match exactly (Guest Name, Attending, Email, Timestamp)
+- Verify the column headers match exactly in A, B, C, D, H, I
 - Try submitting the form again
 - Check the script execution log in the Apps Script editor
 
@@ -149,8 +197,8 @@ Once verified:
 ### Get Attendance Count
 In your Google Sheet, use formulas:
 ```
-=COUNTIF(B:B,"Yes, I'll be there!") 
-=COUNTIF(B:B,"Unable to attend")
+=COUNTIF(C:C,"Yes")
+=COUNTIF(C:C,"No")
 ```
 
 ### Add Data Validation

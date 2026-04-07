@@ -30,6 +30,7 @@
   ],
   "formspreeId": "",
   "googleSheetsUrl": "",
+  "googleSheetsGuestsUrl": "",
   "guests": [
     { "name": "Guest Name 1" },
     { "name": "Guest Name 2" },

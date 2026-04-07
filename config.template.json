@@ -13,5 +13,7 @@
   },
   "events": "Evening Ceremony & Reception",
   "dressCode": "Semi-Formal / Indian Festive Attire",
-  "formspreeId": ""
+  "formspreeId": "",
+  "googleSheetsUrl": "",
+  "googleSheetsGuestsUrl": ""
 }

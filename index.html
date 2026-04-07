@@ -133,14 +133,24 @@
                             <label>Your Response? *</label>
                             <div class="radio-group">
                                 <label class="radio-option">
-                                    <input type="radio" name="attendance" value="Yes, I'll be there!" required>
+                                    <input type="radio" name="attendance" value="Yes" required>
                                     <span>💕 Yes, I'll be there!</span>
                                 </label>
                                 <label class="radio-option">
-                                    <input type="radio" name="attendance" value="Unable to attend" required>
+                                    <input type="radio" name="attendance" value="No" required>
                                     <span>😢 Unable to attend</span>
                                 </label>
                             </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="numberOfGuests">Number of Guests *</label>
+                            <input type="number" id="numberOfGuests" name="numberOfGuests" min="1" value="1" required>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="specialMessage">Special Message</label>
+                            <textarea id="specialMessage" name="specialMessage" placeholder="Share any note with us"></textarea>
                         </div>
 
                         <div class="form-group">

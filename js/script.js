@@ -38,6 +38,35 @@ document.addEventListener('DOMContentLoaded', async function() {
     const rsvpForm = document.getElementById('rsvpForm');
     const guestSelect = document.getElementById('guestName');
     let googleSheetsUrl = '';
+    let googleSheetsGuestsUrl = '';
+
+    function normalizeGuests(payload) {
+        if (!payload) return [];
+
+        const rawGuests = Array.isArray(payload) ? payload : payload.guests;
+        if (!Array.isArray(rawGuests)) return [];
+
+        return rawGuests
+            .map(guest => {
+                if (typeof guest === 'string') {
+                    return guest.trim();
+                }
+                if (guest && typeof guest === 'object' && typeof guest.name === 'string') {
+                    return guest.name.trim();
+                }
+                return '';
+            })
+            .filter(Boolean);
+    }
+
+    function populateGuestDropdown(guestNames) {
+        guestNames.forEach(name => {
+            const option = document.createElement('option');
+            option.value = name;
+            option.textContent = name;
+            guestSelect.appendChild(option);
+        });
+    }
     
     // Only proceed if form exists
     if (!rsvpForm || !guestSelect) {
@@ -50,17 +79,35 @@ document.addEventListener('DOMContentLoaded', async function() {
         const response = await fetch('config.json');
         const config = await response.json();
         
-        // Store Google Sheets URL
+        // Store Google Sheets URLs
         googleSheetsUrl = config.googleSheetsUrl || '';
+        googleSheetsGuestsUrl = config.googleSheetsGuestsUrl || googleSheetsUrl;
         
-        // Populate guest list
-        if (config.guests && config.guests.length > 0) {
-            config.guests.forEach(guest => {
-                const option = document.createElement('option');
-                option.value = guest.name;
-                option.textContent = guest.name;
-                guestSelect.appendChild(option);
-            });
+        // Try to load guest names from Google Sheets first
+        let guestNames = [];
+
+        if (googleSheetsGuestsUrl) {
+            try {
+                const separator = googleSheetsGuestsUrl.includes('?') ? '&' : '?';
+                const url = `${googleSheetsGuestsUrl}${separator}action=guests`;
+                const response = await fetch(url, { method: 'GET' });
+
+                if (response.ok) {
+                    const sheetData = await response.json();
+                    guestNames = normalizeGuests(sheetData);
+                }
+            } catch (error) {
+                console.warn('Could not load guest names from Google Sheets:', error);
+            }
+        }
+
+        // Fallback to config.json guest list when Sheets isn't available
+        if (guestNames.length === 0) {
+            guestNames = normalizeGuests(config);
+        }
+
+        if (guestNames.length > 0) {
+            populateGuestDropdown(guestNames);
         }
     } catch (error) {
         console.error('Error loading config:', error);
@@ -71,8 +118,11 @@ document.addEventListener('DOMContentLoaded', async function() {
             e.preventDefault();
             
             const formData = {
+                action: 'rsvp',
                 guestName: document.getElementById('guestName').value,
                 attendance: document.querySelector('input[name="attendance"]:checked').value,
+                numberOfGuests: Number(document.getElementById('numberOfGuests').value || 1),
+                specialMessage: document.getElementById('specialMessage').value.trim(),
                 email: document.getElementById('email').value,
                 timestamp: new Date().toLocaleString()
             };
@@ -80,7 +130,7 @@ document.addEventListener('DOMContentLoaded', async function() {
             const statusElement = document.getElementById('formStatus');
             
             // Validate form fields
-            if (!formData.guestName || !formData.attendance || !formData.email) {
+            if (!formData.guestName || !formData.attendance || !formData.email || formData.numberOfGuests < 1) {
                 statusElement.textContent = '⚠️ Please fill in all fields';
                 statusElement.classList.add('error');
                 statusElement.classList.remove('success');

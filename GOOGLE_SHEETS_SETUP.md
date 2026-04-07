@@ -9,12 +9,10 @@
 //    - B: Guest Name
 //    - C: Attendance (Yes/No)
 //    - D: Number of Guests
-//    - E: Guest Names
-//    - F: Dietary Preferences
-//    - G: Other Dietary Info
-//    - H: Special Requests
+//    - H: Special messages
 //    - I: Email
 // 4. Name the sheet "RSVPs"
+// 5. Add invited guest names under column B (starting from B2)
 
 // STEP 2: Create Google Apps Script
 // 1. Go to https://script.google.com
@@ -22,22 +20,65 @@
 // 3. Paste this code into the editor:
 
 /*
+function doGet(e) {
+  const action = (e.parameter.action || '').toLowerCase();
+  const sheet = SpreadsheetApp.getActiveSheet();
+
+  if (action === 'guests') {
+    const lastRow = sheet.getLastRow();
+    if (lastRow < 2) {
+      return ContentService.createTextOutput(JSON.stringify({ guests: [] }))
+        .setMimeType(ContentService.MimeType.JSON);
+    }
+
+    const values = sheet.getRange(2, 2, lastRow - 1, 1).getValues();
+    const guests = values
+      .map(row => String(row[0] || '').trim())
+      .filter(Boolean)
+      .map(name => ({ name }));
+
+    return ContentService.createTextOutput(JSON.stringify({ guests }))
+      .setMimeType(ContentService.MimeType.JSON);
+  }
+
+  return ContentService.createTextOutput(JSON.stringify({ status: 'ok' }))
+    .setMimeType(ContentService.MimeType.JSON);
+}
+
 function doPost(e) {
   try {
     const sheet = SpreadsheetApp.getActiveSheet();
-    const data = JSON.parse(e.postData.contents);
-    
-    sheet.appendRow([
-      new Date().toLocaleString(),
-      data.guestName,
-      data.attendance,
-      data.numberOfPlusOnes,
-      data.plusOneNames.join('; '),
-      data.dietaryPreferences,
-      data.otherDietary,
-      data.specialRequests,
-      data.guestEmail
-    ]);
+    const data = JSON.parse(e.postData.contents || '{}');
+
+    const guestName = String(data.guestName || '').trim();
+    const attendance = String(data.attendance || '').trim();
+    const numberOfGuests = Number(data.numberOfGuests || 1);
+    const specialMessage = String(data.specialMessage || '').trim();
+    const email = String(data.email || '').trim();
+    const timestamp = String(data.timestamp || new Date().toLocaleString());
+
+    const lastRow = sheet.getLastRow();
+    let rowToUpdate = -1;
+
+    if (lastRow >= 2) {
+      const nameValues = sheet.getRange(2, 2, lastRow - 1, 1).getValues();
+      for (let i = 0; i < nameValues.length; i++) {
+        if (String(nameValues[i][0]).trim().toLowerCase() === guestName.toLowerCase()) {
+          rowToUpdate = i + 2;
+          break;
+        }
+      }
+    }
+
+    if (rowToUpdate === -1) {
+      sheet.appendRow([timestamp, guestName, attendance, numberOfGuests, '', '', '', specialMessage, email]);
+    } else {
+      sheet.getRange(rowToUpdate, 1).setValue(timestamp);
+      sheet.getRange(rowToUpdate, 3).setValue(attendance);
+      sheet.getRange(rowToUpdate, 4).setValue(numberOfGuests);
+      sheet.getRange(rowToUpdate, 8).setValue(specialMessage);
+      sheet.getRange(rowToUpdate, 9).setValue(email);
+    }
     
     return ContentService.createTextOutput(
       JSON.stringify({success: true})
@@ -58,29 +99,18 @@ function doPost(e) {
 // 5. Who has access: "Anyone"
 // 6. Click "Deploy"
 // 7. Copy the deployment URL (will look like):
-//    https://script.googleapis.com/macros/d/YOUR_ID/userweb
+//    https://script.google.com/macros/s/YOUR_DEPLOYMENT_ID/exec
 
 // STEP 4: Add to Wedding Website
-// Edit YOUR_PROJECT/js/script.js
-// Find the submitRsvp() function
-// Replace the Formspree section with:
+// Edit YOUR_PROJECT/config.json
+// Add both URLs (same value):
 
 /*
-const googleSheetsUrl = "YOUR_GOOGLE_APPS_SCRIPT_URL";
-
-const response = await fetch(googleSheetsUrl, {
-  method: 'POST',
-  body: JSON.stringify(submissionData)
-});
+"googleSheetsUrl": "YOUR_GOOGLE_APPS_SCRIPT_URL",
+"googleSheetsGuestsUrl": "YOUR_GOOGLE_APPS_SCRIPT_URL"
 */
 
-// STEP 5: Also use Formspree for Email Notifications
-// 1. Go to https://formspree.io
-// 2. Create a new form with your email
-// 3. Copy the Form ID
-// 4. Add to config.json: "formspreeId": "YOUR_ID"
-
 // Now you get:
-// ✅ Instant email notification
-// ✅ Automatic Google Sheets entry
-// ✅ Clean tracking in Sheets
+// ✅ Guest names loaded from Google Sheet
+// ✅ RSVP updates in the same guest row
+// ✅ Automatic tracking in columns A, B, C, D, H, I
