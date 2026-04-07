@@ -241,6 +241,72 @@ a:hover{
     letter-spacing: 1px;
 }
 
+/* Hero date/venue details */
+.hero-detail {
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 2.2vh;
+}
+
+.hero-detail-label {
+    font-family: 'Quicksand', sans-serif;
+    font-size: 0.78rem;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    color: var(--gold);
+    opacity: 0.85;
+    margin-bottom: 4px;
+}
+
+.hero-detail-value {
+    font-family: 'Cinzel', serif;
+    font-size: clamp(1.2rem, 2.4vw, 1.7rem);
+    font-weight: 700;
+    line-height: 1.35;
+    background: linear-gradient(135deg, var(--burgundy) 30%, var(--gold) 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    text-shadow: none;
+    display: inline-block;
+}
+
+.hero-detail-value sup {
+    font-size: 0.6em;
+    vertical-align: super;
+}
+
+/* Scroll hint */
+.scroll-hint {
+    margin-top: 4vh;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 6px;
+}
+
+.scroll-hint-text {
+    font-family: 'Quicksand', sans-serif;
+    font-size: 0.9rem;
+    letter-spacing: 0.12em;
+    color: var(--gold);
+    opacity: 0.8;
+    font-style: italic;
+}
+
+.scroll-hint-arrow {
+    font-size: 1.5rem;
+    color: var(--gold);
+    animation: bounceDown 1.6s ease-in-out infinite;
+    display: inline-block;
+    line-height: 1;
+}
+
+@keyframes bounceDown {
+    0%, 100% { transform: translateY(0); opacity: 0.6; }
+    50%       { transform: translateY(8px); opacity: 1; }
+}
+
 .ceremony-time{
     font-family: 'Cinzel', serif;
     font-size: 2.5rem;
