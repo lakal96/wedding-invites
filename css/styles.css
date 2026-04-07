@@ -245,25 +245,30 @@ a:hover{
 .hero-detail {
     display: flex;
     flex-direction: column;
-    margin-bottom: 2.2vh;
+    margin-bottom: 3vh;
+    padding: 1.6vh 1.8vw 1.6vh 1.4vw;
+    border-left: 4px solid var(--gold);
+    background: linear-gradient(135deg, rgba(200,148,86,0.07), rgba(92,46,58,0.04));
+    border-radius: 0 10px 10px 0;
 }
 
 .hero-detail-label {
     font-family: 'Quicksand', sans-serif;
-    font-size: 0.78rem;
-    letter-spacing: 0.22em;
+    font-size: 0.72rem;
+    letter-spacing: 0.28em;
     text-transform: uppercase;
     color: var(--gold);
-    opacity: 0.85;
-    margin-bottom: 4px;
+    opacity: 0.9;
+    margin-bottom: 6px;
+    font-weight: 700;
 }
 
 .hero-detail-value {
     font-family: 'Cinzel', serif;
-    font-size: clamp(1.2rem, 2.4vw, 1.7rem);
+    font-size: clamp(1.25rem, 2.6vw, 1.85rem);
     font-weight: 700;
-    line-height: 1.35;
-    background: linear-gradient(135deg, var(--burgundy) 30%, var(--gold) 100%);
+    line-height: 1.45;
+    background: linear-gradient(135deg, var(--burgundy) 20%, var(--gold) 100%);
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
     background-clip: text;
