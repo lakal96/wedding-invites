@@ -262,7 +262,7 @@ a:hover{
     padding-right: 2vw;
 }
 .home-img{
-    background-image: url(../couple-photo.jpg);
+    background-image: url(../couple-photo.jpeg);
     background-size: cover;
     background-position: center;
     background-repeat: no-repeat;
@@ -334,7 +334,7 @@ a:hover{
     margin: 8vh 0;
 }
 .timeline-img{
-    background-image: url(../photo1.jpg);
+    background-image: url(../photo1.jpeg);
     height: 70vh;
     width: 30vw;
     background-position: center;
@@ -438,15 +438,15 @@ a:hover{
     box-shadow: 0 15px 40px rgba(92, 46, 58, 0.3), inset 0 0 40px rgba(0, 0, 0, 0.25), inset 0 0 60px rgba(0, 0, 0, 0.1);
 }
 .gallery-img:nth-child(1){
-    background-image: url(../photo1.jpg);
+    background-image: url(../photo1.jpeg);
     background-position-x: right;
 }
 .gallery-img:nth-child(3){
-    background-image: url(../photo2.jpg);
+    background-image: url(../photo2.jpeg);
 }
 .gallery-img:nth-child(2){
     background-position-y: top;
-    background-image: url(../photo4.jpg);
+    background-image: url(../photo3.jpeg);
 }
 @media (max-width:1000px){
     .gallery{
@@ -502,12 +502,70 @@ a:hover{
     }
 }
 
+/* <===================VENUE GALLERY===================> */
+
+.venue-section{
+    padding: 10vh var(--horizontal-margin-spacing);
+    background: linear-gradient(135deg, rgba(92, 46, 58, 0.03), rgba(200, 148, 86, 0.03));
+    border-top: 2px solid rgba(200, 148, 86, 0.2);
+    border-bottom: 2px solid rgba(200, 148, 86, 0.2);
+}
+.venue-section h2{
+    text-align: center;
+    margin-bottom: 6vh;
+    color: var(--burgundy);
+}
+.venue-photos{
+    display: flex;
+    flex-direction: row;
+    gap: 2vw;
+    justify-content: center;
+    align-items: stretch;
+}
+.venue-photo{
+    flex: 1;
+    height: 55vh;
+    background-size: cover;
+    background-position: center;
+    border-radius: 12px;
+    box-shadow: 0 10px 35px rgba(0,0,0,0.18);
+    transition: transform 0.4s ease, box-shadow 0.4s ease;
+}
+.venue-photo:hover{
+    transform: scale(1.02) translateY(-4px);
+    box-shadow: 0 18px 45px rgba(92,46,58,0.25);
+}
+.venue-photo-hall {
+    background-image: url(../Wedding-hall.jpeg);
+}
+.venue-photo-hotel {
+    background-image: url(../Wedding-hotel.jpeg);
+}
+.venue-caption{
+    text-align: center;
+    margin-top: 3vh;
+    font-family: 'Quicksand', sans-serif;
+    color: #888;
+    font-size: 0.95rem;
+    letter-spacing: 1px;
+}
+@media (max-width:1000px){
+    .venue-photos{
+        flex-direction: column;
+        gap: 3vw;
+    }
+    .venue-photo{
+        height: 50vw;
+        min-height: 200px;
+    }
+}
+
 /* <===================HANDS===================> */
 
 .hands{
     height: 120vh;
     width: 100%;
-    background-image: url(../couple-vector.webp);
+    background-image: url(../Couple-vector.jpeg);
     background-size: contain;
     background-position: center;
     background-attachment: fixed;
@@ -752,7 +810,7 @@ a:hover{
     display: block;
     height: 100vh;
     width: 40vw;
-    background-image: url(../photo4.jpg);
+    background-image: url(../Wedding-hall.jpeg);
     background-size: cover;
     background-position-y: top;
     background-repeat: no-repeat;
