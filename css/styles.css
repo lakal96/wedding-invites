@@ -1,6 +1,6 @@
 /* <===================TYPOGRAPHY & FONTS===================> */
 
-@import url('https://fonts.googleapis.com/css2?family=Cinzel&family=Quicksand&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Cinzel&family=Quicksand&family=Dancing+Script:wght@400;600&display=swap');
 
 /* <===================CSS VARIABLES===================> */
 
@@ -389,15 +389,14 @@ a:hover{
 
 .timeline{
     display: block;
-    background: linear-gradient(135deg, rgba(92, 46, 58, 0.03), rgba(200, 148, 86, 0.03));
+    background: #fff;
     float: left;
     position: relative;
     top: -30vh;
     width: 100%;
-    backdrop-filter: blur(4px);
     padding: 8vh var(--horizontal-margin-spacing);
-    border-top: 2px solid rgba(200, 148, 86, 0.3);
-    border-bottom: 2px solid rgba(200, 148, 86, 0.3);
+    border-top: 1px solid rgba(200, 148, 86, 0.18);
+    border-bottom: 1px solid rgba(200, 148, 86, 0.18);
 }
 
 .schedule-header {
@@ -406,116 +405,152 @@ a:hover{
 }
 
 .schedule-header h2 {
-    color: var(--burgundy);
-    margin-bottom: 1vh;
+    font-family: 'Cinzel', serif;
+    font-size: clamp(2rem, 5vw, 3.2rem);
+    font-weight: 400;
+    color: #2a2a2a;
+    letter-spacing: 0.12em;
+    line-height: 1.15;
+    margin-bottom: 2.5vh;
 }
 
+.schedule-rule {
+    width: 60px;
+    height: 1px;
+    background: #2a2a2a;
+    margin: 0 auto;
+    opacity: 0.3;
+}
+
+/* ---- Timeline layout ---- */
 .schedule {
     position: relative;
-    max-width: 600px;
+    max-width: 680px;
     margin: 0 auto;
-    padding-left: 20px;
+    padding: 2vh 0;
 }
 
-.schedule::before {
-    content: '';
+.schedule-spine {
     position: absolute;
-    left: calc(50% - 1px);
+    left: 50%;
     top: 0;
     bottom: 0;
-    width: 2px;
-    background: linear-gradient(180deg, transparent, var(--gold), var(--burgundy), var(--gold), transparent);
-    opacity: 0.4;
+    width: 1px;
+    background: #ccc;
+    transform: translateX(-50%);
 }
 
 .schedule-item {
     display: grid;
-    grid-template-columns: 1fr 28px 1fr;
     align-items: center;
-    gap: 16px;
-    margin-bottom: 3.5vh;
+    margin-bottom: 4vh;
     position: relative;
 }
 
-.schedule-item:nth-child(even) .schedule-time {
-    order: 3;
-    text-align: left;
+/* LEFT item: [content] [icon] [tick→spine] */
+.s-left {
+    grid-template-columns: 1fr 68px 16px;
+    grid-template-areas: "content icon tick";
 }
 
-.schedule-item:nth-child(even) .schedule-dot {
-    order: 2;
+/* RIGHT item: [tick←spine] [icon] [content] */
+.s-right {
+    grid-template-columns: 16px 68px 1fr;
+    grid-template-areas: "tick icon content";
 }
 
-.schedule-item:nth-child(even) .schedule-detail {
-    order: 1;
+.s-content  { grid-area: content; }
+.s-icon     { grid-area: icon; }
+.s-tick     { grid-area: tick; }
+
+/* Content alignment */
+.s-left .s-content {
     text-align: right;
+    padding-right: 16px;
+}
+.s-right .s-content {
+    text-align: left;
+    padding-left: 16px;
 }
 
-.schedule-time {
+.s-time {
     font-family: 'Cinzel', serif;
-    font-size: clamp(1.1rem, 2vw, 1.4rem);
+    font-size: clamp(0.85rem, 1.3vw, 1rem);
     font-weight: 700;
-    color: var(--burgundy);
-    text-align: right;
-    line-height: 1;
+    color: #2a2a2a;
+    letter-spacing: 0.06em;
+    margin-bottom: 4px;
 }
 
-.schedule-time span {
-    font-size: 0.65em;
-    color: var(--gold);
-    display: block;
-    letter-spacing: 0.12em;
+.s-name {
+    font-family: 'Cinzel', serif;
+    font-size: clamp(0.7rem, 1.1vw, 0.82rem);
+    font-weight: 400;
+    color: #666;
+    letter-spacing: 0.18em;
+    line-height: 1.5;
 }
 
-.schedule-dot {
-    width: 18px;
-    height: 18px;
-    border-radius: 50%;
-    background: linear-gradient(135deg, var(--burgundy), var(--gold));
-    box-shadow: 0 0 0 4px rgba(200,148,86,0.2);
-    justify-self: center;
-    flex-shrink: 0;
-    position: relative;
-    z-index: 1;
+/* Icon */
+.s-icon {
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 
-.schedule-detail {
-    text-align: left;
+.s-icon svg {
+    width: 48px;
+    height: 48px;
+    color: #2a2a2a;
+    stroke: #2a2a2a;
 }
 
-.schedule-title {
-    font-family: 'Quicksand', sans-serif;
-    font-size: clamp(0.95rem, 1.8vw, 1.15rem);
-    font-weight: 600;
-    color: var(--burgundy);
-    padding: 10px 16px;
-    background: rgba(255,255,255,0.6);
-    border-radius: 8px;
-    backdrop-filter: blur(4px);
-    border: 1px solid rgba(200,148,86,0.2);
-    display: inline-block;
+/* Tick line from icon to spine */
+.s-left .s-tick {
+    height: 1px;
+    background: #ccc;
+    align-self: center;
 }
+.s-right .s-tick {
+    height: 1px;
+    background: #ccc;
+    align-self: center;
+}
+
+/* Couple name at bottom */
+.schedule-couple {
+    text-align: center;
+    margin-top: 4vh;
+    font-family: 'Dancing Script', cursive, serif;
+    font-size: clamp(1.4rem, 2.5vw, 2rem);
+    color: #555;
+    letter-spacing: 0.04em;
+}
+
+/* Unused legacy selectors kept minimal */
+.schedule-ornament, .schedule-footer-rule,
+.schedule-dot, .schedule-detail,
+.schedule-title, .schedule-sep { display: none; }
 
 @media (max-width:1000px){
     .timeline{
-        background-color: var(--grey-color);
+        background: #fff;
         float: none;
         position: relative;
         top: 0;
         width: 100%;
-        backdrop-filter: blur(0);
         height: fit-content;
+        padding: 6vh 5vw;
     }
     .schedule {
-        padding-left: 0;
         max-width: 100%;
     }
-    .schedule::before {
-        left: 50%;
+    .s-icon svg {
+        width: 38px;
+        height: 38px;
     }
-    .schedule-time {
-        font-size: 1rem;
-    }
+    .s-left  { grid-template-columns: 1fr 50px 14px; }
+    .s-right { grid-template-columns: 14px 50px 1fr; }
 }
 
 /* <===================STORY===================> */
@@ -872,6 +907,23 @@ a:hover{
     gap: 2vw;
     justify-content: center;
     align-items: stretch;
+}
+.venue-photo-wrapper {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+}
+.venue-photo-wrapper .venue-photo {
+    flex: 1;
+}
+.venue-photo-label {
+    text-align: center;
+    margin-top: 12px;
+    font-family: 'Cinzel', serif;
+    font-size: clamp(0.9rem, 1.4vw, 1.05rem);
+    color: var(--burgundy);
+    letter-spacing: 0.1em;
+    opacity: 0.85;
 }
 .venue-photo{
     flex: 1;
