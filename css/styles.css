@@ -581,13 +581,13 @@ a:hover{
 /* <===================SAVE THE DATE===================> */
 
 .std-badge {
-    display: inline-block;
+    display: block;
     font-family: 'Cinzel', serif;
     font-size: 0.78rem;
     letter-spacing: 0.28em;
     text-transform: uppercase;
     padding: 5px 18px;
-    margin-bottom: 10px;
+    margin: 0 auto 10px auto;
     border-radius: 50px;
     background: linear-gradient(135deg, var(--burgundy), var(--gold));
     background-size: 200% auto;
@@ -596,6 +596,7 @@ a:hover{
     box-shadow: 0 3px 12px rgba(92,46,58,0.25);
     animation: shimmer 4s linear infinite;
     width: fit-content;
+    text-align: center;
 }
 
 @keyframes shimmer {
