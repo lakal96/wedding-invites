@@ -241,6 +241,72 @@ a:hover{
     letter-spacing: 1px;
 }
 
+/* Hero date/venue details */
+.hero-detail {
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 2.2vh;
+}
+
+.hero-detail-label {
+    font-family: 'Quicksand', sans-serif;
+    font-size: 0.78rem;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    color: var(--gold);
+    opacity: 0.85;
+    margin-bottom: 4px;
+}
+
+.hero-detail-value {
+    font-family: 'Cinzel', serif;
+    font-size: clamp(1.2rem, 2.4vw, 1.7rem);
+    font-weight: 700;
+    line-height: 1.35;
+    background: linear-gradient(135deg, var(--burgundy) 30%, var(--gold) 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    text-shadow: none;
+    display: inline-block;
+}
+
+.hero-detail-value sup {
+    font-size: 0.6em;
+    vertical-align: super;
+}
+
+/* Scroll hint */
+.scroll-hint {
+    margin-top: 4vh;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 6px;
+}
+
+.scroll-hint-text {
+    font-family: 'Quicksand', sans-serif;
+    font-size: 0.9rem;
+    letter-spacing: 0.12em;
+    color: var(--gold);
+    opacity: 0.8;
+    font-style: italic;
+}
+
+.scroll-hint-arrow {
+    font-size: 1.5rem;
+    color: var(--gold);
+    animation: bounceDown 1.6s ease-in-out infinite;
+    display: inline-block;
+    line-height: 1;
+}
+
+@keyframes bounceDown {
+    0%, 100% { transform: translateY(0); opacity: 0.6; }
+    50%       { transform: translateY(8px); opacity: 1; }
+}
+
 .ceremony-time{
     font-family: 'Cinzel', serif;
     font-size: 2.5rem;
@@ -412,59 +478,193 @@ a:hover{
     }
 }
 
-/* <===================GALLERY===================> */
+/* <===================SLIDESHOW===================> */
 
-.gallery{
-    display: flex;
-    padding: 20vh 0;
-    justify-content: center;
-    align-items: center;
+.slideshow-section {
+    padding: 10vh 0;
+    width: 100%;
 }
-.gallery-img{
-    width: 30vw;
-    height: 30vw;
-    margin: 10px;
+
+.slideshow {
+    position: relative;
+    width: 100%;
+    max-width: 900px;
+    margin: 0 auto;
+    aspect-ratio: 4/3;
+    overflow: hidden;
+    border-radius: 12px;
+    box-shadow: 0 20px 60px rgba(0,0,0,0.25);
+}
+
+.slide {
+    position: absolute;
+    inset: 0;
     background-size: cover;
     background-position: center;
-    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2), inset 0 0 40px rgba(0, 0, 0, 0.25), inset 0 0 60px rgba(0, 0, 0, 0.1);
-    -webkit-mask-image: radial-gradient(ellipse at center, white 0%, white 70%, rgba(255,255,255,0.8) 85%, transparent 100%);
-    mask-image: radial-gradient(ellipse at center, white 0%, white 70%, rgba(255,255,255,0.8) 85%, transparent 100%);
-    transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-    position: relative;
+    opacity: 0;
+    transition: opacity 0.9s ease-in-out;
 }
 
-.gallery-img:hover{
-    transform: scale(1.05) translateY(-5px);
-    box-shadow: 0 15px 40px rgba(92, 46, 58, 0.3), inset 0 0 40px rgba(0, 0, 0, 0.25), inset 0 0 60px rgba(0, 0, 0, 0.1);
+.slide.active {
+    opacity: 1;
 }
-.gallery-img:nth-child(1){
-    background-image: url(../images/photo1.jpeg);
-    background-position-x: right;
+
+.slide-btn {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    background: rgba(255,255,255,0.18);
+    border: none;
+    color: #fff;
+    font-size: 3rem;
+    line-height: 1;
+    width: 52px;
+    height: 52px;
+    border-radius: 50%;
+    cursor: pointer;
+    z-index: 10;
+    transition: background 0.2s;
+    backdrop-filter: blur(4px);
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
-.gallery-img:nth-child(3){
-    background-image: url(../images/photo2.jpeg);
+
+.slide-btn:hover {
+    background: rgba(255,255,255,0.35);
 }
-.gallery-img:nth-child(2){
-    background-position-y: top;
-    background-image: url(../images/photo3.jpeg);
+
+.slide-prev { left: 14px; }
+.slide-next { right: 14px; }
+
+.slide-dots {
+    position: absolute;
+    bottom: 14px;
+    left: 50%;
+    transform: translateX(-50%);
+    display: flex;
+    gap: 8px;
+    z-index: 10;
 }
-@media (max-width:1000px){
-    .gallery{
-        flex-direction: column;
+
+.dot {
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    background: rgba(255,255,255,0.5);
+    cursor: pointer;
+    transition: background 0.3s, transform 0.3s;
+}
+
+.dot.active {
+    background: #fff;
+    transform: scale(1.3);
+}
+
+@media (max-width: 900px) {
+    .slideshow {
+        border-radius: 0;
+        max-width: 100%;
+    }
+    .slide-btn {
+        font-size: 2rem;
+        width: 40px;
+        height: 40px;
+    }
+}
+
+/* <===================COUNTDOWN===================> */
+
+.countdown-section {
+    padding: 7vh var(--horizontal-margin-spacing);
+    text-align: center;
+    background: linear-gradient(135deg, rgba(92,46,58,0.06), rgba(200,148,86,0.06));
+    border-bottom: 1px solid rgba(200,148,86,0.18);
+}
+
+.countdown-label {
+    font-size: 1rem;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--gold);
+    margin-bottom: 3vh;
+    opacity: 0.85;
+}
+
+.countdown {
+    display: inline-flex;
+    align-items: center;
+    gap: 0;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
+.countdown-unit {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background: rgba(255,255,255,0.55);
+    backdrop-filter: blur(8px);
+    border: 1.5px solid rgba(200,148,86,0.3);
+    border-radius: 16px;
+    padding: 2.5vh 3vw;
+    min-width: 90px;
+    box-shadow: 0 8px 24px rgba(92,46,58,0.1), inset 0 1px 0 rgba(255,255,255,0.8);
+    margin: 6px;
+}
+
+.countdown-value {
+    font-size: clamp(2.4rem, 6vw, 4.5rem);
+    font-weight: 700;
+    color: var(--burgundy);
+    line-height: 1;
+    font-variant-numeric: tabular-nums;
+    letter-spacing: -0.02em;
+    transition: transform 0.15s ease;
+}
+
+.countdown-value.pop {
+    transform: scale(1.18);
+}
+
+.countdown-name {
+    font-size: 0.7rem;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--gold);
+    margin-top: 0.6rem;
+    opacity: 0.8;
+}
+
+.countdown-sep {
+    font-size: clamp(2rem, 5vw, 3.5rem);
+    font-weight: 300;
+    color: var(--gold);
+    opacity: 0.5;
+    padding: 0 2px;
+    margin-bottom: 2rem;
+    align-self: center;
+}
+
+.countdown-date {
+    margin-top: 3vh;
+    font-size: 0.95rem;
+    color: var(--burgundy);
+    opacity: 0.65;
+    letter-spacing: 0.08em;
+}
+
+@media (max-width: 600px) {
+    .countdown-unit {
+        min-width: 68px;
+        padding: 2vh 3vw;
+    }
+    .countdown-sep {
+        font-size: 1.8rem;
         padding: 0;
     }
-    .gallery-img{
-        width: 100vw;
-        height: 90vw;
-        margin: 2px 0;
-    }
-    .gallery-img:nth-child(2){
-        position: relative;
-        left: -(var(--horizontal-margin-spacing));
-    }
 }
-
-/* <===================QUOTE===================> */
+ */
 .quote{
     margin: 10vh 0;
     padding: 5vh 2rem;
@@ -509,6 +709,42 @@ a:hover{
     background: linear-gradient(135deg, rgba(92, 46, 58, 0.03), rgba(200, 148, 86, 0.03));
     border-top: 2px solid rgba(200, 148, 86, 0.2);
     border-bottom: 2px solid rgba(200, 148, 86, 0.2);
+}
+
+.venue-map {
+    margin-top: 5vh;
+    border-radius: 12px;
+    overflow: hidden;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.15);
+    border: 2px solid rgba(200, 148, 86, 0.25);
+}
+
+.directions-btn {
+    display: inline-block;
+    margin: 3vh auto 0 auto;
+    padding: 14px 36px;
+    background: linear-gradient(135deg, var(--burgundy), var(--gold));
+    color: #fff;
+    border-radius: 50px;
+    font-size: 1rem;
+    font-weight: 600;
+    letter-spacing: 0.05em;
+    text-decoration: none;
+    box-shadow: 0 6px 20px rgba(92,46,58,0.3);
+    transition: transform 0.2s, box-shadow 0.2s;
+    text-align: center;
+    width: fit-content;
+}
+
+.directions-btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 10px 28px rgba(92,46,58,0.4);
+}
+
+.venue-section > .directions-btn {
+    display: block;
+    max-width: 220px;
+    margin: 3vh auto 0;
 }
 .venue-section h2{
     text-align: center;

@@ -7,7 +7,7 @@
     <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
     <meta http-equiv="Pragma" content="no-cache">
     <meta http-equiv="Expires" content="0">
-    <link rel="stylesheet" href="css/styles.css?v=2.1">
+    <link rel="stylesheet" href="css/styles.css?v=2.3">
     <script src="https://kit.fontawesome.com/7b12bcc245.js" crossorigin="anonymous"></script>
     <title>Lakmi & Sukitha's Wedding</title>
 </head>
@@ -34,10 +34,18 @@
         <div class="container-out">
             
             <div class="container-in text">
-                Thursday, May 28, 2026 <br>
-                Saminro Grand Palace, 2nd Floor, Makola
-                <p class="rsvp-prompt">✨ Secure your spot in our celebration ✨</p>
-                <button class="huge-btn" onclick="document.getElementById('registry').scrollIntoView({behavior: 'smooth'})">CONFIRM YOUR COMING</button>
+                <div class="hero-detail">
+                    <span class="hero-detail-label">Date</span>
+                    <span class="hero-detail-value">28<sup>th</sup> of May 2026</span>
+                </div>
+                <div class="hero-detail">
+                    <span class="hero-detail-label">Venue</span>
+                    <span class="hero-detail-value">Crystal Ballroom, Saminro Grand Palace, Makola</span>
+                </div>
+                <div class="scroll-hint">
+                    <span class="scroll-hint-text">Scroll down &amp; mark your presence</span>
+                    <span class="scroll-hint-arrow">&#8595;</span>
+                </div>
             </div>
             <div class="home-img" id="home-img-lg"></div>
         </div>
@@ -45,6 +53,33 @@
 
 
     <div class="home-img home-img-sm"></div>
+
+    <div class="countdown-section">
+        <p class="countdown-label">Until we say "I Do"</p>
+        <div class="countdown" id="countdown">
+            <div class="countdown-unit">
+                <div class="countdown-value" id="cd-days">00</div>
+                <div class="countdown-name">Days</div>
+            </div>
+            <div class="countdown-sep">:</div>
+            <div class="countdown-unit">
+                <div class="countdown-value" id="cd-hours">00</div>
+                <div class="countdown-name">Hours</div>
+            </div>
+            <div class="countdown-sep">:</div>
+            <div class="countdown-unit">
+                <div class="countdown-value" id="cd-minutes">00</div>
+                <div class="countdown-name">Minutes</div>
+            </div>
+            <div class="countdown-sep">:</div>
+            <div class="countdown-unit">
+                <div class="countdown-value" id="cd-seconds">00</div>
+                <div class="countdown-name">Seconds</div>
+            </div>
+        </div>
+        <p class="countdown-date">Thursday, May 28, 2026 &nbsp;·&nbsp; 10:00 AM</p>
+    </div>
+
     <div class="timeline hz-margin reveal">
         <h2>Celebrating Our Love <br>
             With Those We Love
@@ -74,10 +109,23 @@
             </div>
 
 
-            <div class="gallery hz-margin reveal">
-                <div class="gallery-img"></div>
-                <div class="gallery-img"></div>
-                <div class="gallery-img"></div>
+            <div class="slideshow-section reveal">
+                <div class="slideshow">
+                    <div class="slide active" style="background-image:url(images/photo1.jpeg)"></div>
+                    <div class="slide" style="background-image:url(images/photo2.jpeg)"></div>
+                    <div class="slide" style="background-image:url(images/photo3.jpeg)"></div>
+                    <div class="slide" style="background-image:url(images/photo4.jpeg)"></div>
+                    <div class="slide" style="background-image:url(images/photo5.jpeg)"></div>
+                    <button class="slide-btn slide-prev" aria-label="Previous">&#8249;</button>
+                    <button class="slide-btn slide-next" aria-label="Next">&#8250;</button>
+                    <div class="slide-dots">
+                        <span class="dot active"></span>
+                        <span class="dot"></span>
+                        <span class="dot"></span>
+                        <span class="dot"></span>
+                        <span class="dot"></span>
+                    </div>
+                </div>
             </div>
 
 
@@ -97,6 +145,17 @@
                     <div class="venue-photo venue-photo-hotel"></div>
                 </div>
                 <div class="venue-caption">Saminro Grand Palace &nbsp;·&nbsp; 2nd Floor, Makola</div>
+                <div class="venue-map">
+                    <iframe
+                        src="https://maps.google.com/maps?q=6.9759043,79.9525325&z=17&output=embed"
+                        width="100%" height="340" style="border:0;" allowfullscreen=""
+                        loading="lazy" referrerpolicy="no-referrer-when-downgrade"
+                        title="Saminro Grand Palace location">
+                    </iframe>
+                </div>
+                <a class="directions-btn" href="https://maps.app.goo.gl/5v8Dfx3YpoXLjxSz9" target="_blank" rel="noopener">
+                    📍 Get Directions
+                </a>
             </div>
 
 
@@ -167,6 +226,6 @@
         </div>
     </div>
 
-    <script src="js/script.js?v=2.1"></script>
+    <script src="js/script.js?v=2.3"></script>
 </body>
 </html>
