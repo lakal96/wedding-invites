@@ -33,6 +33,51 @@ function myFunction() {
     document.getElementById("check").checked = false;
 }
 
+// <===================COUNTDOWN===================>
+(function () {
+    const target = new Date('2026-05-28T10:00:00');
+    const els = {
+        days:    document.getElementById('cd-days'),
+        hours:   document.getElementById('cd-hours'),
+        minutes: document.getElementById('cd-minutes'),
+        seconds: document.getElementById('cd-seconds'),
+    };
+    if (!els.days) return;
+
+    function pad(n) { return String(n).padStart(2, '0'); }
+
+    function pop(el) {
+        el.classList.remove('pop');
+        void el.offsetWidth;
+        el.classList.add('pop');
+        setTimeout(() => el.classList.remove('pop'), 200);
+    }
+
+    function tick() {
+        const diff = target - Date.now();
+        if (diff <= 0) {
+            Object.values(els).forEach(el => el.textContent = '00');
+            document.querySelector('.countdown-label').textContent = '🎉 Today is the day!';
+            return;
+        }
+        const d = Math.floor(diff / 86400000);
+        const h = Math.floor((diff % 86400000) / 3600000);
+        const m = Math.floor((diff % 3600000)  / 60000);
+        const s = Math.floor((diff % 60000)    / 1000);
+
+        const vals = { days: pad(d), hours: pad(h), minutes: pad(m), seconds: pad(s) };
+        for (const [key, val] of Object.entries(vals)) {
+            if (els[key].textContent !== val) {
+                els[key].textContent = val;
+                pop(els[key]);
+            }
+        }
+    }
+
+    tick();
+    setInterval(tick, 1000);
+})();
+
 // <===================SLIDESHOW===================>
 (function() {
     const slides = document.querySelectorAll('.slide');
