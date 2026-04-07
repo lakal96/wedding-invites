@@ -32,10 +32,8 @@
   "googleSheetsUrl": "https://script.google.com/macros/s/AKfycbx89xTfB3kYlVfAiIAv1oAUD6gzt6JsMESgkwyqKkVphqTyPTjSvVZWufJjJd0IXuQE/exec",
   "googleSheetsGuestsUrl": "https://script.google.com/macros/s/AKfycbx89xTfB3kYlVfAiIAv1oAUD6gzt6JsMESgkwyqKkVphqTyPTjSvVZWufJjJd0IXuQE/exec",
   "guests": [
-    { "name": "Guest Name 1" },
-    { "name": "Guest Name 2" },
-    { "name": "Guest Name 3" },
-    { "name": "Guest Name 4" },
-    { "name": "Guest Name 5" }
+    { "name": "Asel Denipitiya" },
+    { "name": "Lakal Gamage" },
+    { "name": "Pasindu Lakmal" }
   ]
 }
